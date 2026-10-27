@@ -1,0 +1,8 @@
+planet: IronWorld
+sector: 0
+localizedName: ImpactCrater
+alwaysUnlocked: true
+captureWave: 10
+difficulty: 1
+alwaysUnlocked: true
+research: core-cage

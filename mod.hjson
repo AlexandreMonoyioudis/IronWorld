@@ -1,0 +1,8 @@
+{
+  "name": "IronWorld",
+  "displayName": "IronWorld",
+  "author": "Alexandre Monoyioudis",
+  "description": "Moon",
+  "version": "0.1",
+  "minGameVersion": "159"
+}

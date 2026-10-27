@@ -1,0 +1,68 @@
+localizedName: IronWorld
+mesh: [
+  {
+    type: SunMesh
+    planet: IronWorld
+    divisions: 6
+    octaves: 5
+    persistence: 0.72
+    scl: 1
+    pow: 1
+    mag: 0.5
+    colorScale: 1
+    colors: [
+        "202A33"
+        "526B7A"
+        "9BBBC8"
+        "D7E8EB"
+    ]
+}
+{
+    type: NoiseMesh
+    color1: "263642"
+    color2: "526B7A"
+    seed: 1
+    planet: IronWorld
+    radius: 0.25
+    octaves: 4.25
+    persistence: 0.8
+    divisions: 4
+    scale: 1
+    mag: 1.05
+    coct: 3
+    cper: 0.65
+    cscl: 1.7
+    cthresh: 0.05
+}
+{
+    type: NoiseMesh
+    color1: "718995"
+    color2: "D7E8EB"
+    seed: 7
+    planet: IronWorld
+    radius: 0.205
+    octaves: 5
+    persistence: 0.72
+    divisions: 5
+    scale: 1.4
+    mag: 1.1
+    coct: 4
+    cper: 0.7
+    cscl: 2.2
+    cthresh: 0.08
+  }
+]
+iconColor: "91B4C4"
+bloom: false
+hasAtmosphere: false
+parent: "serpulo"
+accessible: true
+visible: true
+orbitRadius: 5
+radius: 0.2
+camRadius: 0.6
+defaultCore: core-cage
+generator: {}
+alwaysUnlocked: true
+sectorSize: 0.2
+startSector: 0

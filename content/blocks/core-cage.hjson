@@ -1,0 +1,31 @@
+localizedName: Core: Cage
+description: Core of the base. Once destroyed, the sector is lost.
+type: CoreBlock
+name: Core: Cage
+alwaysUnlocked: true
+buildVisibility: editorOnly
+category: effect
+requirements: [
+    copper/2000
+]
+
+//Stat
+health: 3750
+itemCapacity: 3000
+unitCapModifier: 15
+unitType: alpha
+
+//Visual
+size: 3
+squareSprite: false
+thrusterLength: 9.5
+
+//Tech Tree
+isFirstTier: true
+
+research: {
+  planet: IronWorld
+  root: true
+  name: IronWorld
+  requiresUnlock: false
+}
