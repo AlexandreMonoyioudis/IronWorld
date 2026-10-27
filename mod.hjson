@@ -2,7 +2,7 @@
   "name": "IronWorld",
   "displayName": "IronWorld",
   "author": "Alexandre Monoyioudis",
-  "description": "Moon",
+  "description": "An iron-rich moon orbits serpulo, capture it.",
   "version": "0.1",
   "minGameVersion": "159"
 }
