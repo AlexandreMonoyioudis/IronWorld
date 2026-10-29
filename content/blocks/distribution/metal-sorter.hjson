@@ -1,0 +1,21 @@
+type: Sorter
+name: Metal-sorter
+localizedName: Metal Sorter
+description: Routes selected items forward and sends other items to the sides.
+
+health: 50
+size: 1
+
+requirements: [
+    Iron/15
+    Cobalt/5
+]
+
+category: distribution
+research: {
+    parent: metal-router
+}
+researchCost: [
+    Iron/75
+    Cobalt/25
+]

@@ -1,0 +1,24 @@
+type: Junction
+name: metal-junction
+localizedName: Metal Junction
+description: Allows item conveyors to cross without mixing their lanes.
+
+health: 45
+size: 1
+speed: 13
+capacity: 1
+displayedSpeed: 4.6
+
+requirements: [
+    Iron/10
+    Cobalt/5
+]
+
+category: distribution
+research: {
+    parent: metal-router
+}
+researchCost: [
+    Iron/50
+    Cobalt/50
+]

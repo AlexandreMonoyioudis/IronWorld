@@ -12,15 +12,14 @@ itemCapacity: 3
 buildCostMultiplier: 1
 pushUnits: false
 
-sprite: "Iron-Conveyor"
 // bridgeReplacement: transport-bridge
-// junctionReplacement: shielded-junction
+junctionReplacement: metal-junction
 requirements: [
     Iron/1
 ]
 
 research: {
-    parent: core-cage
+    parent: kinetic-drill
 }
 researchCost: [
     Iron/5

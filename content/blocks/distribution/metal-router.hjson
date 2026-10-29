@@ -1,0 +1,23 @@
+type: Router
+name: metal-router
+localizedName: Metal Router
+description: Distributes items to adjacent blocks in rotation.
+
+health: 45
+size: 1
+speed: 8
+itemCapacity: 1
+
+requirements: [
+    Iron/10
+    Cobalt/5
+]
+
+category: distribution
+research: {
+    parent: iron-conveyor
+}
+researchCost: [
+    Iron/50
+    Cobalt/50
+]
