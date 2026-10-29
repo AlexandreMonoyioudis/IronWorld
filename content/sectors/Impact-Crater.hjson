@@ -6,3 +6,6 @@ captureWave: 10
 difficulty: 1
 alwaysUnlocked: true
 research: core-cage
+rules: {
+    loadout: []
+}

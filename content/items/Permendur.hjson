@@ -1,0 +1,10 @@
+name: "Permendur"
+description: "A alloy used in for electromagnetic applications."
+color: "656464"
+hardness: 2
+flammability: 0
+explosiveness: 0
+radioactivity: 0
+charge: 50
+shownPlanets: ["IronWorld"]
+research: Cobalt

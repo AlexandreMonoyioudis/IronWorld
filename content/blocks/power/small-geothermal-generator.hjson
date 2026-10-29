@@ -1,0 +1,26 @@
+type: ThermalGenerator
+name: small-geothermal-generator
+localizedName: Small Geothermal Generator
+description: Generates power from heat in the ground.
+
+size: 1
+health: 100
+powerProduction: 0.625
+generateEffect: generatespark
+effectChance: 0.11
+ambientSound: generating
+ambientSoundVolume: 0.06
+
+requirements: [
+    Iron/30
+    Cobalt/15
+]
+
+category: power
+research: {
+    parent: core-cage
+}
+researchCost: [
+    Iron/60
+    Cobalt/60
+]

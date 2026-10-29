@@ -1,0 +1,51 @@
+type: GenericCrafter
+name: "Vacuum Induction Melter"
+description: "Vacuum Induction Melter melts iron and graphite into permendur."
+
+size: 2
+health: 210
+squareSprite: false
+category: crafting
+
+requirements: [
+    Cobalt/50
+    Iron/80
+]
+
+research: {
+    parent: core-cage
+}
+researchCost: [
+    Cobalt/100
+    Iron/200
+]
+
+craftEffect: smeltsmoke
+drawer: {
+    type: DrawMulti
+    drawers: [
+        {
+            type: DrawDefault
+        }
+        {
+            type: DrawGlowRegion
+            suffix: "-top"
+            color: f48b74
+            alpha: 1
+        }
+    ]
+}
+
+craftTime: 60
+ambientSound: loopSmelter
+ambientSoundVolume: 0.1
+outputItem: Permendur/2
+conductivePower: true
+consumes: {
+    power: 4
+    items: [
+        Iron/1
+        Cobalt/1
+    ]
+}
+liquidCapacity: 0

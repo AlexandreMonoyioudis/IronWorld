@@ -1,0 +1,10 @@
+name: "Iron"
+description: "Iron is not very useful on its own but is the base for most alloys."
+color: "5e5450"
+hardness: 1
+flammability: 0
+explosiveness: 0
+radioactivity: 0
+charge: 0
+shownPlanets: ["IronWorld"]
+research: core-cage

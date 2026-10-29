@@ -1,12 +1,12 @@
-localizedName: Core: Cage
-description: Core of the base. Once destroyed, the sector is lost.
+localizedName: "Core: Cage"
+description: "Core of the base. Once destroyed, the sector is lost."
 type: CoreBlock
-name: Core: Cage
+name: core-cage
 alwaysUnlocked: true
 buildVisibility: editorOnly
 category: effect
 requirements: [
-    copper/2000
+    Iron/2000
 ]
 
 //Stat
@@ -16,7 +16,7 @@ unitCapModifier: 15
 unitType: alpha
 
 //Visual
-size: 3
+size: 4
 squareSprite: false
 thrusterLength: 9.5
 

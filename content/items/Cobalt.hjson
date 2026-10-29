@@ -1,0 +1,10 @@
+name: "Cobalt"
+description: "Cobalt is a useful metal able to retain its strength at high tempratures."
+color: "003CE1"
+hardness: 1
+flammability: 0
+explosiveness: 0
+radioactivity: 0
+charge: 0
+shownPlanets: ["IronWorld"]
+research: Iron

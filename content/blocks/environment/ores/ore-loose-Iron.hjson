@@ -1,0 +1,4 @@
+type: OreBlock
+name: loose-iron-ore
+itemDrop: Iron
+localizedName: "Loose Iron Ore"

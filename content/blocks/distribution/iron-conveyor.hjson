@@ -1,0 +1,27 @@
+type: Conveyor
+name: iron-conveyor
+localizedName: "Iron Conveyor"
+description: "Transports items forward."
+category: distribution
+
+//Stat
+health: 50
+speed: 0.025
+displayedSpeed: 3.5
+itemCapacity: 3
+buildCostMultiplier: 1
+pushUnits: false
+
+sprite: "Iron-Conveyor"
+// bridgeReplacement: transport-bridge
+// junctionReplacement: shielded-junction
+requirements: [
+    Iron/1
+]
+
+research: {
+    parent: core-cage
+}
+researchCost: [
+    Iron/5
+]

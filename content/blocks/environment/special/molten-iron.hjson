@@ -1,0 +1,11 @@
+type: Floor
+name: molten-iron
+localizedName: Molten Iron
+description: A pool of molten iron that provides intense geothermal heat.
+
+variants: 0
+attributes: {
+    heat: 1.0
+    steam: 0.3
+    light: 0.3
+}

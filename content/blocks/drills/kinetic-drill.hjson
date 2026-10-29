@@ -1,0 +1,44 @@
+type: Drill
+name: kinetic-drill
+localizedName: "Kinetic Drill"
+description: "Uses kinetic energy to remove surface metals."
+// Drill Stats
+tier: 1
+drillTime: 450
+hardnessDrillMultiplier: 1
+size: 4
+itemCapacity: 20
+liquidCapacity: 0
+
+requirements: [
+    Iron/50
+]
+
+//Visual
+shake: 1
+drawArrow: false
+squareSprite: false
+glowColor: fc8e6c
+
+drillEffect: [
+    drillSteam,
+    mineImpact,
+    {
+        type: WaveEffect
+        sizeFrom: 0.1
+        sizeTo: 25
+        strokeFrom: 1.1
+        strokeTo: 0.2
+        colorFrom: feb380
+        colorTo: bc5452
+        lifetime: 30
+    }
+]
+
+category: production
+research: {
+    parent: core-cage
+}
+researchCost: [
+    Iron/50
+]
