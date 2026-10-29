@@ -12,7 +12,7 @@ itemCapacity: 3
 buildCostMultiplier: 1
 pushUnits: false
 
-// bridgeReplacement: transport-bridge
+bridgeReplacement: metal-bridge
 junctionReplacement: metal-junction
 requirements: [
     Iron/1

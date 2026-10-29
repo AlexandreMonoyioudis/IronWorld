@@ -1,0 +1,21 @@
+type: OverflowGate
+name: metal-overflow-gate
+localizedName: Metal Overflow Gate
+description: Sends items forward when possible and overflows them to the sides otherwise.
+
+health: 50
+size: 1
+
+requirements: [
+    Iron/20
+    Cobalt/10
+]
+
+category: distribution
+research: {
+    parent: metal-sorter
+}
+researchCost: [
+    Iron/100
+    Cobalt/50
+]

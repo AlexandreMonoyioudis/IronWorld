@@ -1,0 +1,22 @@
+type: OverflowGate
+name: metal-underflow-gate
+localizedName: Metal Underflow Gate
+description: Sends items to the sides when possible and underflows them forward otherwise.
+
+health: 50
+size: 1
+invert: true
+
+requirements: [
+    Iron/20
+    Cobalt/10
+]
+
+category: distribution
+research: {
+    parent: metal-overflow-gate
+}
+researchCost: [
+    Iron/100
+    Cobalt/50
+]
