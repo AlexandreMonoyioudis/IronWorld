@@ -1,0 +1,21 @@
+type: PowerNode
+health: 20
+laserRange: 5
+maxNodes: 3
+name: Electrical Node
+description: Connects power structures over short ranges.
+squareSprite: false
+
+category: power
+research: {
+    parent: small-geothermal-generator
+}
+researchCost: [
+    Cobalt/50
+    Permendur/20
+]
+requirements: [
+    Cobalt/20
+    Permendur/5
+]
+laserColor2: "96ddda"

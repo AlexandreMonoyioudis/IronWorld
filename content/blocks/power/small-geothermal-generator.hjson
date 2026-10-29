@@ -18,9 +18,9 @@ requirements: [
 
 category: power
 research: {
-    parent: core-cage
+    parent: kinetic-drill
 }
 researchCost: [
     Iron/60
-    Cobalt/60
+    Cobalt/40
 ]

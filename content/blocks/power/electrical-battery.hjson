@@ -1,0 +1,30 @@
+type: Battery
+name: electrical-battery
+localizedName: Electrical Battery
+description: Stores surplus power and supplies it to the network when generation falls short.
+
+size: 1
+health: 120
+
+requirements: [
+    Iron/40
+    Cobalt/20
+    Permendur/5
+]
+
+category: power
+research: {
+    parent: electrical-node
+}
+researchCost: [
+    Iron/80
+    Cobalt/40
+    Permendur/10
+]
+
+consumes: {
+    powerBuffered: 200
+}
+
+emptyLightColor: "1646a0"
+fullLightColor: "ffffff"

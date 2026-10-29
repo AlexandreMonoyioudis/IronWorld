@@ -1,0 +1,28 @@
+type: ThermalGenerator
+name: geothermal-generator
+localizedName: Geothermal Generator
+description: Produces more power per heat source compared to the smaller variant.
+
+size: 2
+health: 400
+powerProduction: 1.2
+generateEffect: generatespark
+effectChance: 0.04
+ambientSound: generating
+ambientSoundVolume: 0.010
+
+requirements: [
+    Iron/100
+    Cobalt/60
+    Permendur/40
+]
+
+category: power
+research: {
+    parent: small-geothermal-generator
+}
+researchCost: [
+    Iron/1000
+    Cobalt/1000
+    Permendur/500
+]
