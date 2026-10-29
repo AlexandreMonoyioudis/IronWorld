@@ -22,7 +22,7 @@ research: {
     parent: small-geothermal-generator
 }
 researchCost: [
-    Iron/1000
-    Cobalt/1000
-    Permendur/500
+    Iron/2000
+    Cobalt/2000
+    Permendur/1500
 ]
