@@ -5,7 +5,7 @@ description: Generates power from heat in the ground.
 
 size: 1
 health: 100
-powerProduction: 0.250
+powerProduction: 1
 generateEffect: generatespark
 effectChance: 0.01
 ambientSound: generating
