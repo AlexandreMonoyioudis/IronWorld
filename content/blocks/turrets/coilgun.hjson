@@ -1,0 +1,52 @@
+type: ItemTurret
+name: coilgun
+localizedName: Coilgun
+description: Fires a slow electromagnetic slug at enemies.
+
+size: 2
+health: 300
+range: 120
+reload: 30
+ammoPerShot: 5
+maxAmmo: 30
+shoot: {
+    shots: 1
+}
+
+ammoTypes: {
+    Iron: {
+        type: BasicBulletType
+        speed: 4
+        damage: 50
+        lifetime: 60
+        ammoMultiplier: 1
+    }
+    Permendur: {
+        type: BasicBulletType
+        speed: 4
+        damage: 50
+        lifetime: 60
+        ammoMultiplier: 5
+        reloadMultiplier: 1.5
+    }
+}
+
+consumes: {
+    power: 16.666667
+}
+
+requirements: [
+    Iron/120
+    Cobalt/60
+    Permendur/30
+]
+
+category: turret
+research: {
+    parent: small-geothermal-generator
+}
+researchCost: [
+    Iron/100
+    Cobalt/50
+    Permendur/20
+]
