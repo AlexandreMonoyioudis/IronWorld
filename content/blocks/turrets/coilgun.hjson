@@ -19,6 +19,8 @@ ammoTypes: {
         speed: 4
         damage: 50
         lifetime: 60
+        frontColor: b0b0b0
+        backColor: 666666
         ammoMultiplier: 1
     }
     Permendur: {
@@ -26,6 +28,8 @@ ammoTypes: {
         speed: 4
         damage: 50
         lifetime: 60
+        frontColor: b0b0b0
+        backColor: 666666
         ammoMultiplier: 5
         reloadMultiplier: 1.5
     }
