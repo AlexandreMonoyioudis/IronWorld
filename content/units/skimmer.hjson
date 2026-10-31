@@ -26,7 +26,7 @@ weapons: [
         reload: 30
         bullet: {
             type: BasicBulletType
-            speed: 2
+            speed: 4
             damage: 25
             lifetime: 60
             frontColor: b0b0b0
