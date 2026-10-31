@@ -3,7 +3,7 @@ name: skimmer
 localizedName: Skimmer
 description: A boost-capable tank unit armed with a rotating coilgun.
 
-health: 150
+health: 100
 speed: .8
 accel: 0.16
 drag: 0.01
@@ -13,22 +13,22 @@ treadEffect: unitDust
 rotateShooting: false
 omniMovement: false
 rotateMoveFirst: true
-range: 120
+range: 80
 
 weapons: [
     {
         name: small-coilgun
         x: 0
-        y: 0
+        y: 2
         mirror: false
         rotate: true
         autoTarget: true
-        reload: 30
+        reload: 40
         bullet: {
             type: BasicBulletType
             speed: 4
             damage: 25
-            lifetime: 60
+            lifetime: 20
             frontColor: b0b0b0
             backColor: 666666
         }

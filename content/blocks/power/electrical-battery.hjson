@@ -7,7 +7,7 @@ size: 1
 health: 120
 
 requirements: [
-    Iron/40
+    Iron/10
     Cobalt/20
     Permendur/5
 ]
@@ -17,7 +17,7 @@ research: {
     parent: electrical-node
 }
 researchCost: [
-    Iron/80
+    Iron/20
     Cobalt/40
     Permendur/10
 ]

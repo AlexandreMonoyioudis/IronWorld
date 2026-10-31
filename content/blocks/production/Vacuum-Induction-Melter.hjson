@@ -9,7 +9,7 @@ category: crafting
 
 requirements: [
     Cobalt/50
-    Iron/80
+    Iron/20
 ]
 
 research: {

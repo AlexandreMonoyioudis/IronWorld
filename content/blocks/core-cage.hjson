@@ -7,13 +7,15 @@ buildVisibility: editorOnly
 category: effect
 requirements: [
     Iron/2000
+    Cobalt/1000
+    Permendur/500
 ]
 
 //Stat
 health: 3750
 itemCapacity: 3000
 unitCapModifier: 15
-unitType: alpha
+unitType: beta
 
 //Visual
 size: 4

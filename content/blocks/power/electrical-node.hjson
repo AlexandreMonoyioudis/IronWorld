@@ -11,11 +11,11 @@ research: {
     parent: small-geothermal-generator
 }
 researchCost: [
-    Cobalt/50
-    Permendur/20
+    Iron/50
+    Cobalt/5
 ]
 requirements: [
-    Cobalt/10
-    Permendur/2
+    Iron/10
+    Cobalt/5
 ]
 laserColor2: "96ddda"
