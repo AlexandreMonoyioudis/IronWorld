@@ -12,8 +12,8 @@ ambientSound: generating
 ambientSoundVolume: 0.06
 
 requirements: [
-    Iron/30
-    Cobalt/15
+    Iron/20
+    Cobalt/10
 ]
 
 category: power

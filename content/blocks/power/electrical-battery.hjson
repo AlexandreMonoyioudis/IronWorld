@@ -23,7 +23,7 @@ researchCost: [
 ]
 
 consumes: {
-    powerBuffered: 4000
+    powerBuffered: 2000
 }
 
 emptyLightColor: "1646a0"

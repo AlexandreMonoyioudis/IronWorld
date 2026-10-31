@@ -15,7 +15,7 @@ researchCost: [
     Permendur/20
 ]
 requirements: [
-    Cobalt/20
-    Permendur/5
+    Cobalt/10
+    Permendur/2
 ]
 laserColor2: "96ddda"
