@@ -16,20 +16,24 @@ shoot: {
 ammoTypes: {
     Iron: {
         type: BasicBulletType
-        speed: 4
+        speed: 6
         damage: 50
         lifetime: 60
+        width: 10
+        height: 14
         frontColor: b0b0b0
         backColor: 666666
         ammoMultiplier: 1
     }
     Permendur: {
         type: BasicBulletType
-        speed: 4
+        speed: 6
         damage: 60
         lifetime: 60
-        frontColor: b0b0b0
-        backColor: 666666
+        width: 12
+        height: 16
+        frontColor: 4c5878
+        backColor: 5b5858
         ammoMultiplier: 2
     }
 }
