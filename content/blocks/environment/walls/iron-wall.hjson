@@ -1,0 +1,6 @@
+type: StaticWall
+name: iron-wall
+localizedName: Iron Wall
+description: Impassable iron terrain.
+variants: 3
+buildVisibility: hidden
