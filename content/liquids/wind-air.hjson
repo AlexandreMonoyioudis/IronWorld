@@ -1,0 +1,20 @@
+name: wind-air
+localizedName: Wind Air
+description: A gaseous resource produced by the atmosphere.
+color: "ffffff"
+gas: true
+flammability: 5
+explosiveness: 0
+temperature: 0.5
+viscosity: 0.01
+heatCapacity: 0
+coolant: false
+research: {
+    parent: Iron
+    objectives: [
+        {
+            type: OnSector
+            preset: Iron-Mounds
+        }
+    ]
+}

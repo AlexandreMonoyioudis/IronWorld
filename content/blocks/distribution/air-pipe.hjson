@@ -1,0 +1,28 @@
+type: Conduit
+name: air-pipe
+localizedName: Air Pipe
+description: Transports liquids at high pressure.
+
+health: 100
+liquidCapacity: 10
+liquidPressure: 10
+
+requirements: [
+    Iron/2
+    Cobalt/1
+]
+
+category: distribution
+research: {
+    parent: wind-collector
+    objectives: [
+        {
+            type: OnSector
+            preset: Iron-Mounds
+        }
+    ]
+}
+researchCost: [
+    Iron/10
+    Cobalt/5
+]

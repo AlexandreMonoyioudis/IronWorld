@@ -1,0 +1,45 @@
+type: ForceProjector
+name: alloy-shield-wall
+localizedName: Alloy Shield Wall
+description: Generates a shield around itself that absorbs incoming enemy projectiles.
+
+size: 2
+health: 200
+radius: 11.32
+sides: 4
+shieldRotation: 45
+shieldHealth: 700
+cooldownNormal: 1.75
+cooldownBrokenBase: 0.35
+
+consumes: {
+    remove: coolant
+    power: 0.8333333
+    liquid: wind-air/0.01
+}
+consumeCoolant: false
+
+requirements: [
+    Cobalt/60
+    Permendur/20
+]
+
+category: defense
+research: {
+    parent: core-cage
+    objectives: [
+        {
+            type: OnSector
+            preset: Iron-Mounds
+        }
+        {
+            type: Produce
+            content: wind-air
+        }
+    ]
+}
+researchCost: [
+    Iron/160
+    Cobalt/120
+    Permendur/40
+]

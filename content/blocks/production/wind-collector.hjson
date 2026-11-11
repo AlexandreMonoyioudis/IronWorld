@@ -1,0 +1,57 @@
+type: GenericCrafter
+name: wind-collector
+localizedName: Wind Collector
+description: Passively collects Air from the atmosphere over time.
+
+size: 2
+health: 250
+itemCapacity: 0
+liquidCapacity: 10
+hasLiquids: true
+craftTime: 60
+outputLiquid: {
+    liquid: wind-air
+    amount: 0.008333333
+}
+
+drawer: {
+    type: DrawMulti
+    drawers: [
+        {
+            type: DrawDefault
+        }
+        {
+            type: DrawLiquidRegion
+            suffix: "-liquid"
+            drawLiquid: wind-air
+        }
+        {
+            type: DrawRegion
+            suffix: "-top"
+        }
+        {
+            type: DrawRegion
+            suffix: "-rotator"
+            spinSprite: true
+            rotateSpeed: 1
+        }
+    ]
+}
+
+requirements: [
+    Iron/60
+]
+
+category: production
+research: {
+    parent: core-cage
+    objectives: [
+        {
+            type: OnSector
+            preset: Iron-Mounds
+        }
+    ]
+}
+researchCost: [
+    Iron/100
+]

@@ -1,0 +1,31 @@
+type: LiquidRouter
+name: air-router
+localizedName: Air Router
+description: Distributes liquids to adjacent blocks at high pressure.
+
+health: 120
+size: 1
+liquidCapacity: 20
+liquidPressure: 10
+
+requirements: [
+    Iron/15
+    Cobalt/10
+    Permendur/2
+]
+
+category: distribution
+research: {
+    parent: air-pipe
+    objectives: [
+        {
+            type: OnSector
+            preset: Iron-Mounds
+        }
+    ]
+}
+researchCost: [
+    Iron/75
+    Cobalt/50
+    Permendur/10
+]

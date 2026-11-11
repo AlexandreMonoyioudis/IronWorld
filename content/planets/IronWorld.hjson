@@ -65,6 +65,7 @@ defaultCore: core-cage
 generator: {}
 alwaysUnlocked: true
 allowLaunchSchematics: false
-allowLaunchLoadout: false
+allowLaunchLoadout: true
+launchCapacityMultiplier: 0.5
 sectorSize: 1
 startSector: 0
