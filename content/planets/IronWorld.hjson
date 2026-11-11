@@ -64,5 +64,7 @@ camRadius: 0.6
 defaultCore: core-cage
 generator: {}
 alwaysUnlocked: true
-sectorSize: 0.2
+allowLaunchSchematics: false
+allowLaunchLoadout: false
+sectorSize: 1
 startSector: 0

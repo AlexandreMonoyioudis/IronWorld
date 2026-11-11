@@ -6,9 +6,8 @@ alwaysUnlocked: true
 buildVisibility: editorOnly
 category: effect
 requirements: [
-    Iron/2000
-    Cobalt/1000
-    Permendur/500
+    Iron/1000
+    Cobalt/800
 ]
 
 //Stat

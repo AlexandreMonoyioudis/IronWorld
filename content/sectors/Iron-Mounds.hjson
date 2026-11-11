@@ -1,0 +1,11 @@
+planet: IronWorld
+sector: 1
+localizedName: IronMounds
+captureWave: 20
+difficulty: 1
+research: {
+    parent: Impact-Crater
+}
+rules: {
+    loadout: []
+}

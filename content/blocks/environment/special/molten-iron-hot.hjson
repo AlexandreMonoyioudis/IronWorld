@@ -4,6 +4,11 @@ localizedName: Hot Molten Iron
 description: Molten iron with enough geothermal heat to run a thermal generator at three-quarter efficiency.
 
 variants: 0
+emitLight: true
+lightRadius: 32
+lightColor: "ff943d4d"
+obstructsLight: true
+forceDrawLight: true
 attributes: {
     heat: 0.75
     steam: 0.2

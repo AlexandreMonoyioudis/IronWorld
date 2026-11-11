@@ -4,6 +4,11 @@ localizedName: Molten Iron
 description: A pool of molten iron that provides intense geothermal heat.
 
 variants: 0
+emitLight: true
+lightRadius: 40
+lightColor: "ff943d61"
+obstructsLight: true
+forceDrawLight: true
 attributes: {
     heat: 1.0
     steam: 0.3
