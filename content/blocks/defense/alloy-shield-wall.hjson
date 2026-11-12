@@ -8,20 +8,20 @@ health: 200
 radius: 11.32
 sides: 4
 shieldRotation: 45
-shieldHealth: 700
+shieldHealth: 1000
 cooldownNormal: 1.75
 cooldownBrokenBase: 0.35
 
 consumes: {
     remove: coolant
     power: 0.8333333
-    liquid: wind-air/0.01
+    liquid: wind-air/0.02
 }
 consumeCoolant: false
 
 requirements: [
     Cobalt/60
-    Permendur/20
+    Permendur/40
 ]
 
 category: defense
