@@ -31,7 +31,7 @@ ammoTypes: {
 }
 
 consumes: {
-    power: 33.333332
+    power: 66.666667
 }
 
 requirements: [
