@@ -1,11 +1,11 @@
 type: ItemTurret
 name: helicalrailgun
 localizedName: Helical Rail Gun
-description: Shoots projectiles at enemies. Coilgun/railgun hybrid. Shoots slower than a coilgun, but faster than a railgun.
+description: Shoots projectiles at enemies. Coilgun/railgun hybrid. Shoots faster than a coilgun, but slower than a railgun.
 
 size: 4
 health: 600
-range: 400
+range: 300
 reload: 100
 ammoPerShot: 10
 maxAmmo: 30
@@ -18,7 +18,7 @@ ammoTypes: {
         type: BasicBulletType
         speed: 15
         damage: 250
-        lifetime: 40
+        lifetime: 20
         width: 10
         height: 40
         frontColor: 4c5878

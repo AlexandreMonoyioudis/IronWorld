@@ -33,7 +33,7 @@ Events.on(ContentInitEvent, function () {
                 if (target != null &&
                     !this.invalid(target) &&
                     target.block instanceof Turret &&
-                    this.unit.within(target, this.unit.type.range)) {
+                    this.unit.within(target, this.unit.type.range*.9)) {
                     this.unit.vel.setZero();
                     this.faceTarget();
                     return;

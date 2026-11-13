@@ -28,12 +28,13 @@ weapons: [
         mirror: false
         rotate: false
         reload: 200
+        cooldownTime: 250
         recoil: 2
         bullet: {
             type: BasicBulletType
             speed: 15
             damage: 100
-            lifetime: 12
+            lifetime: 13.33
             width: 10
             height: 40
             frontColor: 4c5878

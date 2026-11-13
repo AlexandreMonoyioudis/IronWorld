@@ -5,7 +5,7 @@ description: Fires a slow electromagnetic slug at enemies.
 
 size: 2
 health: 300
-range: 120
+range: 114
 reload: 30
 ammoPerShot: 2
 maxAmmo: 16
@@ -18,7 +18,7 @@ ammoTypes: {
         type: BasicBulletType
         speed: 6
         damage: 50
-        lifetime: 60
+        lifetime: 19
         width: 10
         height: 14
         frontColor: b0b0b0
@@ -29,7 +29,7 @@ ammoTypes: {
         type: BasicBulletType
         speed: 6
         damage: 60
-        lifetime: 60
+        lifetime: 19
         width: 12
         height: 16
         frontColor: 4c5878
