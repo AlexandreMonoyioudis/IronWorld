@@ -8,9 +8,9 @@ speed: 0.55
 accel: 0.1
 drag: 0.1
 hitSize: 10
-rotateSpeed: 3
+rotateSpeed: 0.1
 targetAir: false
-range: 180
+range: 200
 
 legCount: 6
 legLength: 8
