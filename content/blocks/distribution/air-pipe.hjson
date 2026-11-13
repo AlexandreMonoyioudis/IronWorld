@@ -12,7 +12,7 @@ requirements: [
     Cobalt/1
 ]
 
-category: distribution
+category: liquid
 research: {
     parent: wind-collector
     objectives: [

@@ -14,7 +14,7 @@ requirements: [
     Permendur/2
 ]
 
-category: distribution
+category: liquid
 research: {
     parent: air-pipe
     objectives: [
