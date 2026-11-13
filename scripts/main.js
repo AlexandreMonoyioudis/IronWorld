@@ -7,6 +7,7 @@ const Vars = Packages.mindustry.Vars;
 const ContentType = Packages.mindustry.ctype.ContentType;
 const ContentInitEvent = Packages.mindustry.game.EventType.ContentInitEvent;
 const GroundAI = Packages.mindustry.ai.types.GroundAI;
+const Turret = Packages.mindustry.world.blocks.defense.turrets.Turret;
 
 const ammoFlag = "ironworld-impact-coilgun-ammo";
 const powerFlag = "ironworld-impact-coilgun-power";
@@ -31,6 +32,7 @@ Events.on(ContentInitEvent, function () {
                 const target = this.target;
                 if (target != null &&
                     !this.invalid(target) &&
+                    target.block instanceof Turret &&
                     this.unit.within(target, this.unit.type.range)) {
                     this.unit.vel.setZero();
                     this.faceTarget();
