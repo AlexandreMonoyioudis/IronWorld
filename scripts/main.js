@@ -4,6 +4,9 @@ const Groups = Packages.mindustry.gen.Groups;
 const Log = Packages.arc.util.Log;
 const Time = Packages.arc.util.Time;
 const Vars = Packages.mindustry.Vars;
+const ContentType = Packages.mindustry.ctype.ContentType;
+const ContentInitEvent = Packages.mindustry.game.EventType.ContentInitEvent;
+const GroundAI = Packages.mindustry.ai.types.GroundAI;
 
 const ammoFlag = "ironworld-impact-coilgun-ammo";
 const powerFlag = "ironworld-impact-coilgun-power";
@@ -14,6 +17,32 @@ let diagnosticTime = 0;
 let melterItemsErrorLogged = false;
 
 Log.info("[IronWorld] Impact Crater turret objective script loaded.");
+
+Events.on(ContentInitEvent, function () {
+    const pointer = Vars.content.getByName(ContentType.unit, "ironworld-pointer");
+    if (pointer == null) {
+        Log.err("[IronWorld] Could not find the Pointer unit to configure its combat movement.");
+        return;
+    }
+
+    pointer.aiController = function () {
+        return extend(GroundAI, {
+            updateMovement: function () {
+                const target = this.target;
+                if (target != null &&
+                    !this.invalid(target) &&
+                    this.unit.within(target, this.unit.type.range)) {
+                    this.unit.vel.setZero();
+                    this.faceTarget();
+                    return;
+                }
+
+                this.super$updateMovement();
+            }
+        });
+    };
+    Log.info("[IronWorld] Pointer combat movement configured.");
+});
 
 function findCoilgun() {
     let found = null;
