@@ -16,9 +16,9 @@ shoot: {
 ammoTypes: {
     Permendur: {
         type: BasicBulletType
-        speed: 30
+        speed: 15
         damage: 250
-        lifetime: 10
+        lifetime: 40
         width: 10
         height: 40
         frontColor: 4c5878
