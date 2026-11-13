@@ -9,6 +9,8 @@ itemCapacity: 0
 liquidCapacity: 10
 hasLiquids: true
 craftTime: 60
+ambientSound: generating
+ambientSoundVolume: 0.05
 outputLiquid: {
     liquid: wind-air
     amount: 0.008333333

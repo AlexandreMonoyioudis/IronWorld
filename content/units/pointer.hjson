@@ -11,6 +11,8 @@ hitSize: 10
 rotateSpeed: 0.1
 targetAir: false
 range: 200
+stepSound: walkerStepTiny
+stepSoundVolume: 0.3
 
 legCount: 6
 legLength: 8
@@ -30,6 +32,7 @@ weapons: [
         reload: 200
         cooldownTime: 250
         recoil: 2
+        shootSound: shootArtillerySmall
         bullet: {
             type: BasicBulletType
             speed: 15
@@ -37,6 +40,8 @@ weapons: [
             lifetime: 13.33
             width: 10
             height: 40
+            hitSound: explosion
+            hitSoundVolume: 0.3
             frontColor: 4c5878
             backColor: 5b5858
         }

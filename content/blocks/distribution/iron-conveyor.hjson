@@ -14,6 +14,9 @@ pushUnits: false
 
 bridgeReplacement: metal-bridge
 junctionReplacement: metal-junction
+ambientSound: loopConveyor
+ambientSoundVolume: 0.05
+
 requirements: [
     Iron/1
 ]

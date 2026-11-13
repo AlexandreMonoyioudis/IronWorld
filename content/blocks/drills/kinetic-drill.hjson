@@ -9,6 +9,8 @@ hardnessDrillMultiplier: 1
 size: 4
 itemCapacity: 20
 liquidCapacity: 0
+ambientSound: loopDrill
+ambientSoundVolume: 0.15
 
 requirements: [
     Iron/50
