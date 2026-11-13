@@ -53,14 +53,14 @@ mesh: [
   }
 ]
 iconColor: "91B4C4"
-bloom: false
-hasAtmosphere: false
+bloom: true
+hasAtmosphere: true
 parent: "serpulo"
 accessible: true
 visible: true
 orbitRadius: 5
-radius: 0.2
-camRadius: 0.6
+radius: 0.27
+camRadius: 0.18
 defaultCore: core-cage
 generator: {}
 alwaysUnlocked: true
