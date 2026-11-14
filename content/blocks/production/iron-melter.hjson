@@ -1,0 +1,56 @@
+type: GenericCrafter
+name: iron-melter
+localizedName: Iron Melter
+description: Converts Iron into Slag.
+
+size: 2
+health: 250
+itemCapacity: 10
+liquidCapacity: 20
+hasLiquids: true
+emitLight: false
+drawLiquidLight: false
+
+drawer: {
+    type: DrawMulti
+    drawers: [
+        {
+            type: DrawDefault
+        }
+        {
+            type: DrawGlowRegion
+            suffix: "-top"
+            color: ffa836
+            alpha: 1
+        }
+    ]
+}
+
+craftTime: 60
+outputLiquid: {
+    liquid: slag
+    amount: 0.033333333
+}
+
+consumes: {
+    power: 3.333333
+    items: [
+        Iron/1
+    ]
+}
+
+requirements: [
+    Iron/40
+    Cobalt/20
+    Permendur/10
+]
+
+category: crafting
+research: {
+    parent: wind-collector
+}
+researchCost: [
+    Iron/100
+    Cobalt/50
+    Permendur/20
+]

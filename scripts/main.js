@@ -5,6 +5,7 @@ const Log = Packages.arc.util.Log;
 const Time = Packages.arc.util.Time;
 const Vars = Packages.mindustry.Vars;
 const ContentType = Packages.mindustry.ctype.ContentType;
+const TechTreeNode = Packages.mindustry.content.TechTree.TechNode;
 const ContentInitEvent = Packages.mindustry.game.EventType.ContentInitEvent;
 const GroundAI = Packages.mindustry.ai.types.GroundAI;
 const Turret = Packages.mindustry.world.blocks.defense.turrets.Turret;
@@ -20,6 +21,21 @@ let melterItemsErrorLogged = false;
 Log.info("[IronWorld] Impact Crater turret objective script loaded.");
 
 Events.on(ContentInitEvent, function () {
+    const permendur = Vars.content.getByName(ContentType.item, "ironworld-Permendur");
+    const slag = Vars.content.getByName(ContentType.liquid, "slag");
+    if (permendur == null || slag == null) {
+        Log.err("[IronWorld] Could not find Permendur or vanilla Slag to add the IronWorld tech-tree node.");
+    } else if (permendur.techNode == null) {
+        Log.err("[IronWorld] Permendur has no tech-tree node; could not add Slag after it.");
+    } else {
+        const existingSlagNode = slag.techNode;
+        new TechTreeNode(permendur.techNode, slag, slag.researchRequirements());
+        if (existingSlagNode != null) {
+            slag.techNode = existingSlagNode;
+        }
+        Log.info("[IronWorld] Added a Slag node after Permendur without replacing existing tech-tree nodes.");
+    }
+
     const pointer = Vars.content.getByName(ContentType.unit, "ironworld-pointer");
     if (pointer == null) {
         Log.err("[IronWorld] Could not find the Pointer unit to configure its combat movement.");

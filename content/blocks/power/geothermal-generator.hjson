@@ -5,7 +5,7 @@ description: Produces more power per heat source compared to the smaller variant
 
 size: 2
 health: 400
-powerProduction: 1.2
+powerProduction: 1.4
 generateEffect: generatespark
 effectChance: 0.04
 ambientSound: generating
@@ -15,6 +15,7 @@ requirements: [
     Iron/100
     Cobalt/60
     Permendur/40
+    Black-Steel/20
 ]
 
 category: power
@@ -25,4 +26,5 @@ researchCost: [
     Iron/2000
     Cobalt/2000
     Permendur/1500
+    Black-Steel/300
 ]

@@ -1,0 +1,11 @@
+name: "Black-Steel"
+localizedName: Black Steel
+description: "A strong alloy refined from Cobalt and Slag using Air."
+color: "73777A"
+hardness: 5
+flammability: 0
+explosiveness: 0
+radioactivity: 0
+charge: 0
+shownPlanets: ["IronWorld"]
+research: Permendur

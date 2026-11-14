@@ -1,0 +1,54 @@
+type: GenericCrafter
+name: steel-factory
+localizedName: Steel Factory
+description: Combines Slag and Cobalt into Black Steel using Air.
+
+size: 4
+health: 350
+itemCapacity: 20
+liquidCapacity: 40
+hasLiquids: true
+craftTime: 60
+outputItem: Black-Steel/1
+
+drawer: {
+    type: DrawMulti
+    drawers: [
+        {
+            type: DrawDefault
+        }
+        {
+            type: DrawGlowRegion
+            suffix: "-top"
+            color: ffa836
+            alpha: 1
+        }
+    ]
+}
+
+consumes: {
+    power: 8.333333
+    items: [
+        Cobalt/2
+    ]
+    liquids: [
+        slag/0.1
+        wind-air/0.033333333
+    ]
+}
+
+requirements: [
+    Iron/100
+    Cobalt/80
+    Permendur/200
+]
+
+category: crafting
+research: {
+    parent: Vacuum-Induction-Melter
+}
+researchCost: [
+    Iron/200
+    Cobalt/160
+    Permendur/400
+]
