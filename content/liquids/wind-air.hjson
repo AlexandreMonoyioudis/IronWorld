@@ -1,9 +1,9 @@
 name: wind-air
-localizedName: Wind Air
+localizedName: Air
 description: A gaseous resource produced by the atmosphere.
 color: "ffffff"
 gas: true
-flammability: 5
+flammability: 3
 explosiveness: 0
 temperature: 0.5
 viscosity: 0.01
