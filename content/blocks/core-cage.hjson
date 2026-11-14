@@ -14,7 +14,7 @@ requirements: [
 health: 3750
 itemCapacity: 3000
 unitCapModifier: 15
-unitType: beta
+unitType: cage-guard
 
 //Visual
 size: 4

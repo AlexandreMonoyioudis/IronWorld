@@ -1,0 +1,48 @@
+type: legs
+name: cage-guard
+localizedName: Cage Guard
+description: A four-legged core guard armed with twin coilguns.
+
+health: 250
+speed: 2
+accel: 0.5
+drag: 0.1
+hitSize: 10
+rotateSpeed: 10
+targetAir: false
+range: 76
+buildSpeed: 1.0
+stepSound: walkerStepTiny
+stepSoundVolume: 0.3
+
+legCount: 4
+legLength: 12
+legForwardScl: 1
+legMoveSpace: 1.5
+legBaseOffset: 2
+legSpeed: 0.5
+shadowElevation: 0.6
+
+weapons: [
+    {
+        name: small-coilgun
+        x: 3
+        y: 2
+        mirror: true
+        rotate: true
+        autoTarget: true
+        reload: 20
+        cooldownTime: 80
+        shootSound: shoot
+        bullet: {
+            type: BasicBulletType
+            speed: 4
+            damage: 25
+            lifetime: 19
+            hitSound: explosion
+            hitSoundVolume: 0.2
+            frontColor: b0b0b0
+            backColor: 666666
+        }
+    }
+]
