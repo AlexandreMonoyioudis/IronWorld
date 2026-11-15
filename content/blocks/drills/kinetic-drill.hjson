@@ -6,6 +6,7 @@ description: "Uses kinetic energy to remove surface metals."
 tier: 2
 drillTime: 450
 hardnessDrillMultiplier: 2
+canOverdrive: false
 size: 4
 itemCapacity: 20
 liquidCapacity: 0
