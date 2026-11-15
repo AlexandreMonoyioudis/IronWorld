@@ -1,6 +1,6 @@
 type: GenericCrafter
 name: "Vacuum Induction Melter"
-description: "Vacuum Induction Melter melts iron and graphite into permendur."
+description: "Vacuum Induction Melter melts iron and cobalt into permendur."
 
 size: 2
 health: 210
