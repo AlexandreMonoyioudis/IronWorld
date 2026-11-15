@@ -2,6 +2,9 @@ planet: IronWorld
 sector: 0
 localizedName: ImpactCrater
 alwaysUnlocked: true
+overrideLaunchDefaults: true
+allowLaunchSchematics: false
+allowLaunchLoadout: false
 captureWave: 11
 difficulty: 1
 research: core-cage
