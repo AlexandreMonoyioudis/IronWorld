@@ -5,7 +5,7 @@ description: Generates a shield around itself that absorbs incoming enemy projec
 
 size: 2
 health: 200
-radius: 40
+radius: 25
 sides: 4
 shieldRotation: 45
 shieldHealth: 750
