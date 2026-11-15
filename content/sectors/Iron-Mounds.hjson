@@ -5,6 +5,12 @@ captureWave: 20
 difficulty: 1
 research: {
     parent: Impact-Crater
+    objectives: [
+        {
+            type: SectorComplete
+            preset: Impact-Crater
+        }
+    ]
 }
 rules: {
     loadout: []

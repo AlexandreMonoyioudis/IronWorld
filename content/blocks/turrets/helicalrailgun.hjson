@@ -43,6 +43,12 @@ requirements: [
 category: turret
 research: {
     parent: coilgun
+    objectives: [
+        {
+            type: OnSector
+            preset: Iron-Mounds
+        }
+    ]
 }
 
 researchCost: [
