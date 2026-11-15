@@ -1,0 +1,19 @@
+planet: IronWorld
+sector: 1
+localizedName: IronMounds
+captureWave: 20
+difficulty: 1
+research: {
+    parent: Iron-Mounds
+    objectives: [
+        {
+            type: SectorComplete
+            preset: Iron-Mounds
+        }
+    ]
+}
+rules: {
+    loadout: []
+    coreCapture: true
+    coreBuildAndConfig: true
+}
