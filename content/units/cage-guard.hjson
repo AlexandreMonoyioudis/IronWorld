@@ -12,6 +12,7 @@ rotateSpeed: 10
 targetAir: false
 range: 76
 buildSpeed: 1.0
+mineTier: 1
 stepSound: walkerStepTiny
 stepSoundVolume: 0.3
 
