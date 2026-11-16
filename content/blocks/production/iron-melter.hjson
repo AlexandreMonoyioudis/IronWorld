@@ -48,6 +48,12 @@ requirements: [
 category: crafting
 research: {
     parent: wind-collector
+    objectives: [
+        {
+            type: SectorComplete
+            preset: Choke-Hold
+        }
+    ]
 }
 researchCost: [
     Iron/100

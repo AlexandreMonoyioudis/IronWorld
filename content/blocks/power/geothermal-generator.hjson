@@ -21,6 +21,16 @@ requirements: [
 category: power
 research: {
     parent: small-geothermal-generator
+    objectives: [
+        {
+            type: OnSector
+            preset: Iron-Mounds
+        }
+        {
+            type: Produce
+            content: Black-Steel
+        }
+    ]
 }
 researchCost: [
     Iron/2000

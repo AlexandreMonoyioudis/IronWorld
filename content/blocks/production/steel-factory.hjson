@@ -46,6 +46,12 @@ requirements: [
 category: crafting
 research: {
     parent: Vacuum-Induction-Melter
+    objectives: [
+        {
+            type: SectorComplete
+            preset: Choke-Hold
+        }
+    ]
 }
 researchCost: [
     Iron/200
