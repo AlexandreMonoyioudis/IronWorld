@@ -1,0 +1,32 @@
+type: LiquidRouter
+name: gas-container
+localizedName: Gas Container
+description: Stores and distributes gases and other liquids.
+
+size: 2
+health: 300
+liquidCapacity: 700
+
+requirements: [
+    Iron/40
+    Black-Steel/20
+]
+
+category: liquid
+research: {
+    parent: air-router
+    objectives: [
+        {
+            type: OnSector
+            preset: Iron-Mounds
+        }
+        {
+            type: Produce
+            content: Black-Steel
+        }
+    ]
+}
+researchCost: [
+    Iron/200
+    Black-Steel/100
+]
