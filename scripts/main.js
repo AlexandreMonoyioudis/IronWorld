@@ -8,6 +8,9 @@ const ContentType = Packages.mindustry.ctype.ContentType;
 const TechTreeNode = Packages.mindustry.content.TechTree.TechNode;
 const ContentInitEvent = Packages.mindustry.game.EventType.ContentInitEvent;
 const GroundAI = Packages.mindustry.ai.types.GroundAI;
+const MendProjector = Packages.mindustry.world.blocks.defense.MendProjector;
+const Mathf = Packages.arc.math.Mathf;
+const Fx = Packages.mindustry.content.Fx;
 const Turret = Packages.mindustry.world.blocks.defense.turrets.Turret;
 
 const ammoFlag = "ironworld-impact-coilgun-ammo";
@@ -34,6 +37,67 @@ Events.on(ContentInitEvent, function () {
             slag.techNode = existingSlagNode;
         }
         Log.info("[IronWorld] Added a Slag node after Permendur without replacing existing tech-tree nodes.");
+    }
+
+    const alloyShieldWall = Vars.content.getByName(ContentType.block, "ironworld-alloy-shield-wall");
+    const windAir = Vars.content.getByName(ContentType.liquid, "ironworld-wind-air");
+    if (alloyShieldWall == null || windAir == null) {
+        Log.err("[IronWorld] Could not find the Alloy Shield Wall or Wind Air to configure mend-cycle consumption.");
+    } else {
+        alloyShieldWall.liquidFilter[windAir.id] = true;
+        const windAirPerMend = 0.02 * alloyShieldWall.reload;
+        alloyShieldWall.buildType = function () {
+            return extend(MendProjector.MendBuild, alloyShieldWall, {
+                updateTile: function () {
+                    const canHeal = !this.checkSuppression();
+
+                    this.smoothEfficiency = Mathf.lerpDelta(this.smoothEfficiency, this.efficiency, 0.08);
+                    this.heat = Mathf.lerpDelta(this.heat, this.efficiency > 0 && canHeal ? 1 : 0, 0.08);
+                    this.charge += this.heat * this.delta();
+                    this.phaseHeat = Mathf.lerpDelta(this.phaseHeat, this.optionalEfficiency, 0.1);
+
+                    if (this.optionalEfficiency > 0 &&
+                        this.timer.get(alloyShieldWall.timerUse, alloyShieldWall.useTime / this.timeScale) &&
+                        canHeal) {
+                        this.consume();
+                    }
+
+                    if (this.charge >= alloyShieldWall.reload && canHeal) {
+                        if (!this.damaged() || this.isHealSuppressed()) {
+                            this.charge = 0;
+                            return;
+                        }
+
+                        if (this.liquids.get(windAir) < windAirPerMend) {
+                            this.charge = alloyShieldWall.reload;
+                            return;
+                        }
+
+                        this.liquids.remove(windAir, windAirPerMend);
+                        this.charge = 0;
+                        this.heal(
+                            this.maxHealth *
+                            (alloyShieldWall.healPercent + this.phaseHeat * alloyShieldWall.phaseBoost) /
+                            100 * this.efficiency
+                        );
+                        this.recentlyHealed();
+                        Fx.healBlockFull.at(
+                            this.x,
+                            this.y,
+                            alloyShieldWall.size,
+                            alloyShieldWall.baseColor,
+                            alloyShieldWall
+                        );
+                        alloyShieldWall.mendSound.at(
+                            this,
+                            1 + Mathf.range(0.1),
+                            alloyShieldWall.mendSoundVolume
+                        );
+                    }
+                }
+            });
+        };
+        Log.info("[IronWorld] Alloy Shield Wall configured to consume Wind Air per mend.");
     }
 
     const pointer = Vars.content.getByName(ContentType.unit, "ironworld-pointer");
