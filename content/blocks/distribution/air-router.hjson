@@ -5,8 +5,8 @@ description: Distributes liquids to adjacent blocks at high pressure.
 
 health: 120
 size: 1
-liquidCapacity: 20
-liquidPressure: 10
+liquidCapacity: 4
+liquidPressure: 20
 
 requirements: [
     Iron/15

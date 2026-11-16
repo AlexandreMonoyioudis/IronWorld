@@ -4,7 +4,7 @@ localizedName: Air Pipe
 description: Transports liquids at high pressure.
 
 health: 100
-liquidCapacity: 10
+liquidCapacity: 2
 liquidPressure: 10
 
 requirements: [
