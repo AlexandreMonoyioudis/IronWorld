@@ -4,6 +4,7 @@ localizedName: Cage Guard
 description: A four-legged core guard armed with twin coilguns.
 
 health: 250
+armor: 5
 speed: 2
 accel: 0.5
 drag: 0.1

@@ -4,10 +4,11 @@ localizedName: Skimmer
 description: A boost-capable tank unit armed with a rotating coilgun.
 
 tier: 1
-health: 100
+health: 90
 speed: 1.2
 accel: 0.08
 drag: 0.01
+armor: 1
 canBoost: true
 boostMultiplier: 1.5
 treadEffect: unitDust

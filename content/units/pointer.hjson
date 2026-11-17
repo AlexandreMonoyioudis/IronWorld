@@ -3,6 +3,8 @@ name: pointer
 localizedName: Pointer
 description: A crawling unit armed with a compact helical railgun.
 
+
+armor: 5
 health: 200
 speed: 0.55
 accel: 0.1
