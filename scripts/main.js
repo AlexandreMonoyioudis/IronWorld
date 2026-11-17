@@ -1,4 +1,5 @@
 const Events = Packages.arc.Events;
+const Core = Packages.arc.Core;
 const Trigger = Packages.mindustry.game.EventType.Trigger;
 const Groups = Packages.mindustry.gen.Groups;
 const Log = Packages.arc.util.Log;
@@ -9,6 +10,7 @@ const TechTreeNode = Packages.mindustry.content.TechTree.TechNode;
 const ContentInitEvent = Packages.mindustry.game.EventType.ContentInitEvent;
 const GroundAI = Packages.mindustry.ai.types.GroundAI;
 const MendProjector = Packages.mindustry.world.blocks.defense.MendProjector;
+const Fonts = Packages.mindustry.ui.Fonts;
 const Mathf = Packages.arc.math.Mathf;
 const Fx = Packages.mindustry.content.Fx;
 const Turret = Packages.mindustry.world.blocks.defense.turrets.Turret;
@@ -20,8 +22,33 @@ const melterPowerFlag = "ironworld-impact-melter-power";
 const melterResourcesFlag = "ironworld-impact-melter-resources";
 let diagnosticTime = 0;
 let melterItemsErrorLogged = false;
+let windAirIconRegistered = false;
 
 Log.info("[IronWorld] Impact Crater turret objective script loaded.");
+
+Events.run(Trigger.uiDrawBegin, function () {
+    if (windAirIconRegistered || Vars.headless) return;
+    windAirIconRegistered = true;
+
+    const iconRegion = Core.atlas.find("ironworld-wind-air-inline-ui");
+    const uiRegion = Core.atlas.find("logo");
+    if (!iconRegion.found() || iconRegion.texture != uiRegion.texture) {
+        Log.err("[IronWorld] Could not register the Wind Air text icon from the UI atlas.");
+        return;
+    }
+
+    let iconCode = 0xe000;
+    while (iconCode <= 0xf8ff && Fonts.unicodeToName(iconCode) != null) {
+        iconCode++;
+    }
+    if (iconCode > 0xf8ff) {
+        Log.err("[IronWorld] No free private-use font character is available for the Wind Air text icon.");
+        return;
+    }
+
+    Fonts.registerIcon("ironworld-wind-air", "ironworld-wind-air-inline-ui", iconCode, iconRegion);
+    Log.info("[IronWorld] Registered the Wind Air text icon.");
+});
 
 Events.on(ContentInitEvent, function () {
     const permendur = Vars.content.getByName(ContentType.item, "ironworld-Permendur");
