@@ -1,0 +1,66 @@
+type: tank
+name: scourer
+localizedName: Scourer
+description: A moon skimmer armed with three small coilguns.
+
+tier: 2
+health: 500
+speed: 2.5
+accel: 0.08
+drag: 0.01
+armor: 10
+canBoost: true
+boostMultiplier: 1.5
+treadEffect: unitDust
+rotateShooting: false
+omniMovement: false
+rotateMoveFirst: true
+rotateSpeed: 3
+range: 76
+tankMoveSound: tankMoveSmall
+tankMoveVolume: 0.2
+
+weapons: [
+    {
+        name: small-coilgun
+        x: 0
+        y: -6.25
+        mirror: false
+        rotate: true
+        autoTarget: true
+        reload: 40
+        cooldownTime: 60
+        shootSound: shoot
+        bullet: {
+            type: BasicBulletType
+            speed: 4
+            damage: 25
+            lifetime: 19
+            hitSound: explosion
+            hitSoundVolume: 0.2
+            frontColor: b0b0b0
+            backColor: 666666
+        }
+    }
+    {
+        name: small-coilgun
+        x: 4.25
+        y: -9.75
+        mirror: true
+        rotate: true
+        autoTarget: true
+        reload: 40
+        cooldownTime: 60
+        shootSound: shoot
+        bullet: {
+            type: BasicBulletType
+            speed: 4
+            damage: 25
+            lifetime: 19
+            hitSound: explosion
+            hitSoundVolume: 0.2
+            frontColor: b0b0b0
+            backColor: 666666
+        }
+    }
+]
