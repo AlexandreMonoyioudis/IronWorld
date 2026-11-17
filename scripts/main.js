@@ -50,9 +50,14 @@ Events.on(ContentInitEvent, function () {
             return extend(MendProjector.MendBuild, alloyShieldWall, {
                 updateTile: function () {
                     const canHeal = !this.checkSuppression();
+                    const hasMendAir = this.liquids.get(windAir) >= windAirPerMend;
 
                     this.smoothEfficiency = Mathf.lerpDelta(this.smoothEfficiency, this.efficiency, 0.08);
-                    this.heat = Mathf.lerpDelta(this.heat, this.efficiency > 0 && canHeal ? 1 : 0, 0.08);
+                    this.heat = Mathf.lerpDelta(
+                        this.heat,
+                        this.efficiency > 0 && canHeal && this.damaged() && hasMendAir ? 1 : 0,
+                        0.08
+                    );
                     this.charge += this.heat * this.delta();
                     this.phaseHeat = Mathf.lerpDelta(this.phaseHeat, this.optionalEfficiency, 0.1);
 

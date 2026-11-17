@@ -9,8 +9,8 @@ hasLiquids: true
 liquidCapacity: 10
 range: 0.1
 phaseRangeBoost: 0
-reload: 250
-healPercent: 12
+reload: 125
+healPercent: 6
 
 consumes: {
     power: 1.25
