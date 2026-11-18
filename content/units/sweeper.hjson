@@ -5,7 +5,7 @@ description: A moon skimmer armed with a fast-firing Permendur coilgun.
 
 tier: 3
 health: 700
-speed: 1.2
+speed: 1.0
 accel: 0.08
 drag: 0.01
 armor: 15
