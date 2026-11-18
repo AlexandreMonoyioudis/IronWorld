@@ -1,4 +1,4 @@
-9type: MendProjector
+type: MendProjector
 name: alloy-shield-wall
 localizedName: Alloy Shield Wall
 description: Uses Wind Air to repair itself when a mend pulse completes.
