@@ -9,6 +9,7 @@ speed: 2.5
 accel: 0.08
 drag: 0.01
 armor: 10
+hitSize: 10
 canBoost: true
 boostMultiplier: 1.5
 treadEffect: unitDust
