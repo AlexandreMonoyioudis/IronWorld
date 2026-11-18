@@ -1,6 +1,6 @@
 name: wind-air
 localizedName: Air
-description: A gaseous resource produced by the atmosphere.
+description: A gas found in the atmosphere.
 color: "ffffff"
 gas: true
 flammability: 3
