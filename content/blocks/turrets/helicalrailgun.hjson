@@ -4,7 +4,7 @@ localizedName: Helical Rail Gun
 description: Shoots projectiles at enemies. Coilgun/railgun hybrid. Shoots faster than a coilgun, but slower than a railgun.
 
 size: 4
-health: 600
+health: 300
 range: 300
 reload: 100
 ammoPerShot: 10
@@ -18,12 +18,32 @@ ammoTypes: {
     Permendur: {
         type: BasicBulletType
         speed: 15
-        damage: 250
+        damage: 125
         lifetime: 20
-        width: 10
-        height: 40
+        pierce: true
+        pierceBuilding: true
+        pierceCap: 3
+        width: 20
+        height: 80
         hitSound: explosion
         hitSoundVolume: 0.35
+        frontColor: 4c5878
+        backColor: 5b5858
+        ammoMultiplier: 1
+    }
+    Black-Steel: {
+        type: BasicBulletType
+        speed: 10
+        damage: 150
+        lifetime: 33
+        rangeChange: 30
+        pierce: true
+        pierceBuilding: true
+        pierceCap: 5
+        width: 25
+        height: 100
+        hitSound: explosion
+        hitSoundVolume: 0.40
         frontColor: 4c5878
         backColor: 5b5858
         ammoMultiplier: 1

@@ -3,7 +3,7 @@ name: metal-junction
 localizedName: Metal Junction
 description: Allows item conveyors to cross without mixing their lanes.
 
-health: 45
+health: 25
 size: 1
 speed: 13
 capacity: 1

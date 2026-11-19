@@ -3,7 +3,7 @@ name: metal-underflow-gate
 localizedName: Metal Underflow Gate
 description: Sends items to the sides when possible and underflows them forward otherwise.
 
-health: 50
+health: 25
 size: 1
 invert: true
 

@@ -3,7 +3,7 @@ name: Metal-bridge
 localizedName: Metal Bridge
 description: Transfers items across gaps to a linked bridge conveyor.
 
-health: 100
+health: 50
 size: 1
 range: 6
 transportTime: 3

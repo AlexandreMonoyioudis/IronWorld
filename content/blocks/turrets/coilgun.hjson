@@ -4,7 +4,7 @@ localizedName: Coilgun
 description: Fires a slow electromagnetic slug at enemies.
 
 size: 2
-health: 300
+health: 150
 range: 114
 reload: 30
 ammoPerShot: 2
@@ -18,7 +18,7 @@ ammoTypes: {
     Iron: {
         type: BasicBulletType
         speed: 6
-        damage: 50
+        damage: 25
         lifetime: 19
         width: 10
         height: 14
@@ -31,7 +31,7 @@ ammoTypes: {
     Permendur: {
         type: BasicBulletType
         speed: 6
-        damage: 60
+        damage: 30
         lifetime: 19
         width: 12
         height: 16

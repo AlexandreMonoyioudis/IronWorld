@@ -1,7 +1,7 @@
 type: PowerNode
 health: 20
 laserRange: 5
-maxNodes: 3
+maxNodes: 10
 name: Electrical Node
 description: Connects power structures over short ranges.
 squareSprite: false

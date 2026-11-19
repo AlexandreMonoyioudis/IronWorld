@@ -3,7 +3,7 @@ name: metal-overflow-gate
 localizedName: Metal Overflow Gate
 description: Sends items forward when possible and overflows them to the sides otherwise.
 
-health: 50
+health: 25
 size: 1
 
 requirements: [

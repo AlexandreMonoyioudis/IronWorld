@@ -5,7 +5,7 @@ description: "Transports items forward."
 category: distribution
 
 //Stat
-health: 50
+health: 25
 speed: 0.025
 displayedSpeed: 3.5
 itemCapacity: 3

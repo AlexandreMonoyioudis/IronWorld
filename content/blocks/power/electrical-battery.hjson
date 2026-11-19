@@ -4,7 +4,7 @@ localizedName: Electrical Battery
 description: Stores surplus power and supplies it to the network when generation falls short.
 
 size: 1
-health: 120
+health: 45
 
 requirements: [
     Iron/10

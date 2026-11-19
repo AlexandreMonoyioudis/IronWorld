@@ -3,7 +3,7 @@ name: metal-router
 localizedName: Metal Router
 description: Distributes items to adjacent blocks in rotation.
 
-health: 45
+health: 25
 size: 1
 speed: 8
 itemCapacity: 1

@@ -5,7 +5,7 @@ description: A crawling unit armed with a compact helical railgun.
 
 
 armor: 5
-health: 200
+health: 100
 speed: 0.55
 accel: 0.1
 drag: 0.1
@@ -31,14 +31,14 @@ weapons: [
         y: -2
         mirror: false
         rotate: false
-        reload: 200
+        reload: 100
         cooldownTime: 250
         recoil: 2
         shootSound: shootArtillerySmall
         bullet: {
             type: BasicBulletType
             speed: 15
-            damage: 100
+            damage: 50
             lifetime: 13.33
             width: 10
             height: 40

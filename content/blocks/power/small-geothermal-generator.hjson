@@ -4,7 +4,7 @@ localizedName: Small Geothermal Generator
 description: Generates power from heat in the ground.
 
 size: 1
-health: 100
+health: 50
 powerProduction: 1
 generateEffect: generatespark
 effectChance: 0.01
