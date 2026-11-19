@@ -74,7 +74,7 @@ Events.on(ContentInitEvent, function () {
         Log.err("[IronWorld] Could not find the Alloy Shield Wall or Wind Air to configure mend-cycle consumption.");
     } else {
         alloyShieldWall.liquidFilter[windAir.id] = true;
-        const windAirPerMend = 0.02 * alloyShieldWall.reload;
+        const windAirPerMend = .5;
         alloyShieldWall.buildType = function () {
             return extend(MendProjector.MendBuild, alloyShieldWall, {
                 updateTile: function () {
@@ -111,7 +111,7 @@ Events.on(ContentInitEvent, function () {
                         this.charge = 0;
                         this.heal(
                             this.maxHealth *
-                            (alloyShieldWall.healPercent + this.phaseHeat * alloyShieldWall.phaseBoost) /
+                            (alloyShieldWall.healPercent + this.phaseHeat) /
                             100 * this.efficiency
                         );
                         this.recentlyHealed();
