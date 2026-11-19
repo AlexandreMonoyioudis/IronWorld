@@ -5,16 +5,16 @@ description: Uses Air to repair itself when a mend pulse completes.
 details: Requires 0.5 :ironworld-wind-air: Wind Air per mend pulse; Air is consumed only when it repairs itself.
 
 size: 2
-health: 300
+health: 500
 hasLiquids: true
 liquidCapacity: 10
 range: 0.1
 phaseRangeBoost: 0
 reload: 75
-healPercent: 3
+healPercent: 5
 
 consumes: {
-    power: 1.25
+    power: 1
 }
 
 requirements: [
