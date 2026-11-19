@@ -9,7 +9,7 @@ liquidPressure: 10
 
 requirements: [
     Iron/2
-    Cobalt/1
+    Permendur/2
 ]
 
 category: liquid
@@ -23,6 +23,6 @@ research: {
     ]
 }
 researchCost: [
-    Iron/10
-    Cobalt/5
+    Iron/100
+    Permendur/50
 ]

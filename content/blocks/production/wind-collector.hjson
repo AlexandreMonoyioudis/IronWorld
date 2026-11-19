@@ -41,7 +41,7 @@ drawer: {
 }
 
 requirements: [
-    Iron/60
+    Iron/20
 ]
 
 category: production

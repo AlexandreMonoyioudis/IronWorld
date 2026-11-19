@@ -7,8 +7,8 @@ health: 25
 size: 1
 
 requirements: [
-    Iron/20
-    Cobalt/10
+    Iron/5
+    Cobalt/3
 ]
 
 category: distribution

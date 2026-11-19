@@ -49,7 +49,7 @@ consumes: {
 
 requirements: [
     Iron/20
-    Cobalt/60
+    Cobalt/40
     Permendur/30
 ]
 
