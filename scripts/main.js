@@ -14,6 +14,8 @@ const Fonts = Packages.mindustry.ui.Fonts;
 const Mathf = Packages.arc.math.Mathf;
 const Fx = Packages.mindustry.content.Fx;
 const Turret = Packages.mindustry.world.blocks.defense.turrets.Turret;
+const Building = Packages.mindustry.gen.Building;
+const Unit = Packages.mindustry.gen.Unit;
 
 const ammoFlag = "ironworld-impact-coilgun-ammo";
 const powerFlag = "ironworld-impact-coilgun-power";
@@ -144,7 +146,8 @@ Events.on(ContentInitEvent, function () {
                 const target = this.target;
                 if (target != null &&
                     !this.invalid(target) &&
-                    target.block instanceof Turret &&
+                    ((target instanceof Building && target.block instanceof Turret) ||
+                        (target instanceof Unit && target.isPlayer())) &&
                     this.unit.within(target, this.unit.type.range*.9)) {
                     this.unit.vel.setZero();
                     this.faceTarget();
