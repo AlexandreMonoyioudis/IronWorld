@@ -13,7 +13,7 @@ ambientSound: loopDrill
 ambientSoundVolume: 0.15
 
 requirements: [
-    Iron/50
+    Iron/40
 ]
 
 //Visual
@@ -39,5 +39,5 @@ research: {
     parent: core-cage
 }
 researchCost: [
-    Iron/50
+    Iron/10
 ]

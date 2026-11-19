@@ -18,7 +18,7 @@ consumes: {
 }
 
 requirements: [
-    Iron/60
+    Iron/20
     Permendur/40
 ]
 

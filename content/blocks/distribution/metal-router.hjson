@@ -9,8 +9,8 @@ speed: 8
 itemCapacity: 1
 
 requirements: [
-    Iron/10
-    Cobalt/5
+    Iron/5
+    Cobalt/3
 ]
 
 category: distribution

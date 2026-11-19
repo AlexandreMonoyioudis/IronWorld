@@ -12,7 +12,7 @@ requirements: [
 
 //Stat
 health: 2750
-itemCapacity: 3000
+itemCapacity: 3500
 unitCapModifier: 15
 unitType: cage-guard
 

@@ -10,8 +10,8 @@ transportTime: 3
 itemCapacity: 10
 
 requirements: [
-    Iron/30
-    Cobalt/20
+    Iron/15
+    Cobalt/10
 ]
 
 category: distribution

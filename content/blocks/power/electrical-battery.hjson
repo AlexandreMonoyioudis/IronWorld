@@ -17,8 +17,7 @@ research: {
     parent: electrical-node
 }
 researchCost: [
-    Iron/20
-    Cobalt/40
+    Cobalt/20
     Permendur/10
 ]
 

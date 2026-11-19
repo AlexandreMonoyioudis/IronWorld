@@ -55,9 +55,9 @@ consumes: {
 }
 
 requirements: [
-    Iron/400
-    Cobalt/160
-    Permendur/250
+    Iron/200
+    Cobalt/80
+    Permendur/150
 ]
 
 category: turret

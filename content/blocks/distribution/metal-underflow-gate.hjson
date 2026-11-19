@@ -8,8 +8,8 @@ size: 1
 invert: true
 
 requirements: [
-    Iron/20
-    Cobalt/10
+    Iron/5
+    Cobalt/3
 ]
 
 category: distribution
