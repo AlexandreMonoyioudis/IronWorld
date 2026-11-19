@@ -4,12 +4,12 @@ localizedName: Scourer
 description: A moon skimmer armed with three small coilguns.
 
 tier: 2
-health: 500
+health: 300
 speed: 2.5
 accel: 0.08
 drag: 0.01
 armor: 10
-hitSize: 10
+hitSize: 2
 canBoost: true
 boostMultiplier: 1.5
 treadEffect: unitDust
@@ -35,7 +35,7 @@ weapons: [
         bullet: {
             type: BasicBulletType
             speed: 4
-            damage: 25
+            damage: 13
             lifetime: 19
             hitSound: explosion
             hitSoundVolume: 0.2
@@ -56,7 +56,7 @@ weapons: [
         bullet: {
             type: BasicBulletType
             speed: 4
-            damage: 25
+            damage: 13
             lifetime: 19
             hitSound: explosion
             hitSoundVolume: 0.2

@@ -3,7 +3,7 @@ name: Metal-sorter
 localizedName: Metal Sorter
 description: Routes selected items forward and sends other items to the sides.
 
-health: 50
+health: 25
 size: 1
 
 requirements: [

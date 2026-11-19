@@ -3,7 +3,7 @@ name: cage-guard
 localizedName: Cage Guard
 description: A four-legged core guard armed with twin coilguns.
 
-health: 250
+health: 125
 armor: 5
 speed: 2
 accel: 0.5
@@ -40,7 +40,7 @@ weapons: [
         bullet: {
             type: BasicBulletType
             speed: 4
-            damage: 25
+            damage: 13
             lifetime: 19
             hitSound: explosion
             hitSoundVolume: 0.2

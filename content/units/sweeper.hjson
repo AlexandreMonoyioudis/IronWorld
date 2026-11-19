@@ -1,7 +1,7 @@
 type: tank
 name: sweeper
 localizedName: Sweeper
-description: A moon skimmer armed with a fast-firing Permendur coilgun.
+description: A moon skimmer armed with an overclocked coilgun.
 
 tier: 3
 health: 700
@@ -33,7 +33,7 @@ weapons: [
         bullet: {
             type: BasicBulletType
             speed: 6
-            damage: 60
+            damage: 30
             lifetime: 19
             width: 12
             height: 16

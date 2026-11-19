@@ -4,8 +4,8 @@ localizedName: Gas Container
 description: Stores and distributes gases and other liquids.
 
 size: 2
-health: 300
-liquidCapacity: 700
+health: 200
+liquidCapacity: 100
 
 requirements: [
     Iron/40
