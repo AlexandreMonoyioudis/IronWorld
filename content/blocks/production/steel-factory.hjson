@@ -22,12 +22,13 @@ drawer: {
             suffix: "-top"
             color: ffa836
             alpha: 1
+            glowIntensity: 0
         }
     ]
 }
 
 consumes: {
-    power: 8.333333
+    power: 18
     items: [
         Cobalt/2
     ]
