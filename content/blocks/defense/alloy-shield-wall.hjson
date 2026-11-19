@@ -2,7 +2,7 @@ type: MendProjector
 name: alloy-shield-wall
 localizedName: Alloy Shield Wall
 description: Uses Air to repair itself when a mend pulse completes.
-details: Requires 0.5 :ironworld-wind-air: Wind Air per mend pulse; Air is consumed only when it repairs itself.
+details: Requires 1.5 :ironworld-wind-air: Wind Air per mend pulse; Air is consumed only when it repairs itself.
 
 size: 2
 health: 500
@@ -10,8 +10,8 @@ hasLiquids: true
 liquidCapacity: 10
 range: 0.1
 phaseRangeBoost: 0
-reload: 75
-healPercent: 5
+reload: 50
+healPercent: 2
 
 consumes: {
     power: 1
