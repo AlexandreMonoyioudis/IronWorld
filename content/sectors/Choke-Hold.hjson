@@ -1,7 +1,7 @@
 planet: IronWorld
 sector: 1
-localizedName: Chock Hold
-captureWave: 20
+localizedName: Choke Hold
+captureWave: 16
 difficulty: 1
 research: {
     parent: Iron-Mounds
