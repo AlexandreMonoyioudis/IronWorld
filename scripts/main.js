@@ -69,69 +69,85 @@ Events.on(ContentInitEvent, function () {
     }
 
     const alloyShieldWall = Vars.content.getByName(ContentType.block, "ironworld-alloy-shield-wall");
+    const reinforcedAlloyShieldWall = Vars.content.getByName(ContentType.block, "ironworld-reinforced-alloy-shield-wall");
     const windAir = Vars.content.getByName(ContentType.liquid, "ironworld-wind-air");
-    if (alloyShieldWall == null || windAir == null) {
-        Log.err("[IronWorld] Could not find the Alloy Shield Wall or Wind Air to configure mend-cycle consumption.");
+    if (windAir == null) {
+        Log.err("[IronWorld] Could not find Wind Air to configure mend-cycle consumption.");
     } else {
-        alloyShieldWall.liquidFilter[windAir.id] = true;
-        const windAirPerMend = .5;
-        alloyShieldWall.buildType = function () {
-            return extend(MendProjector.MendBuild, alloyShieldWall, {
-                updateTile: function () {
-                    const canHeal = !this.checkSuppression();
-                    const hasMendAir = this.liquids.get(windAir) >= windAirPerMend;
+        const windAirPerMend = 1.5;
+        function configureShieldWall(block) {
+            block.liquidFilter[windAir.id] = true;
+            block.buildType = function () {
+                return extend(MendProjector.MendBuild, block, {
+                    updateTile: function () {
+                        const canHeal = !this.checkSuppression();
+                        const hasMendAir = this.liquids.get(windAir) >= windAirPerMend;
 
-                    this.smoothEfficiency = Mathf.lerpDelta(this.smoothEfficiency, this.efficiency, 0.08);
-                    this.heat = Mathf.lerpDelta(
-                        this.heat,
-                        this.efficiency > 0 && canHeal && this.damaged() && hasMendAir ? 1 : 0,
-                        0.08
-                    );
-                    this.charge += this.heat * this.delta();
-                    this.phaseHeat = Mathf.lerpDelta(this.phaseHeat, this.optionalEfficiency, 0.1);
+                        this.smoothEfficiency = Mathf.lerpDelta(this.smoothEfficiency, this.efficiency, 0.08);
+                        this.heat = Mathf.lerpDelta(
+                            this.heat,
+                            this.efficiency > 0 && canHeal && this.damaged() && hasMendAir ? 1 : 0,
+                            0.08
+                        );
+                        this.charge += this.heat * this.delta();
+                        this.phaseHeat = Mathf.lerpDelta(this.phaseHeat, this.optionalEfficiency, 0.1);
 
-                    if (this.optionalEfficiency > 0 &&
-                        this.timer.get(alloyShieldWall.timerUse, alloyShieldWall.useTime / this.timeScale) &&
-                        canHeal) {
-                        this.consume();
-                    }
+                        if (this.optionalEfficiency > 0 &&
+                            this.timer.get(block.timerUse, block.useTime / this.timeScale) &&
+                            canHeal) {
+                            this.consume();
+                        }
 
-                    if (this.charge >= alloyShieldWall.reload && canHeal) {
-                        if (!this.damaged() || this.isHealSuppressed()) {
+                        if (this.charge >= block.reload && canHeal) {
+                            if (!this.damaged() || this.isHealSuppressed()) {
+                                this.charge = 0;
+                                return;
+                            }
+
+                            if (this.efficiency <= 0 || this.liquids.get(windAir) < windAirPerMend) {
+                                this.charge = block.reload;
+                                return;
+                            }
+
+                            this.liquids.remove(windAir, windAirPerMend);
                             this.charge = 0;
-                            return;
+                            this.heal(
+                                this.maxHealth *
+                                (block.healPercent + this.phaseHeat) /
+                                100 * this.efficiency
+                            );
+                            this.recentlyHealed();
+                            Fx.healBlockFull.at(
+                                this.x,
+                                this.y,
+                                block.size,
+                                block.baseColor,
+                                block
+                            );
+                            block.mendSound.at(
+                                this,
+                                1 + Mathf.range(0.1),
+                                block.mendSoundVolume
+                            );
                         }
-
-                        if (this.liquids.get(windAir) < windAirPerMend) {
-                            this.charge = alloyShieldWall.reload;
-                            return;
-                        }
-
-                        this.liquids.remove(windAir, windAirPerMend);
-                        this.charge = 0;
-                        this.heal(
-                            this.maxHealth *
-                            (alloyShieldWall.healPercent + this.phaseHeat) /
-                            100 * this.efficiency
-                        );
-                        this.recentlyHealed();
-                        Fx.healBlockFull.at(
-                            this.x,
-                            this.y,
-                            alloyShieldWall.size,
-                            alloyShieldWall.baseColor,
-                            alloyShieldWall
-                        );
-                        alloyShieldWall.mendSound.at(
-                            this,
-                            1 + Mathf.range(0.1),
-                            alloyShieldWall.mendSoundVolume
-                        );
                     }
-                }
-            });
-        };
-        Log.info("[IronWorld] Alloy Shield Wall configured to consume Wind Air per mend.");
+                });
+            };
+        }
+
+        if (alloyShieldWall == null) {
+            Log.err("[IronWorld] Could not find the Alloy Shield Wall to configure mend-cycle consumption.");
+        } else {
+            configureShieldWall(alloyShieldWall);
+            Log.info("[IronWorld] Alloy Shield Wall configured to consume Wind Air per mend.");
+        }
+
+        if (reinforcedAlloyShieldWall == null) {
+            Log.err("[IronWorld] Could not find the Reinforced Alloy Shield Wall to configure mend-cycle consumption.");
+        } else {
+            configureShieldWall(reinforcedAlloyShieldWall);
+            Log.info("[IronWorld] Reinforced Alloy Shield Wall configured to consume Wind Air per mend.");
+        }
     }
 
     const pointer = Vars.content.getByName(ContentType.unit, "ironworld-pointer");
