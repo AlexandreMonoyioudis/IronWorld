@@ -1,9 +1,10 @@
-type: Conduit
+type: ArmoredConduit
 name: air-pipe
 localizedName: Air Pipe
-description: Transports liquids at high pressure.
+description: Transports liquids at high pressure. Accepts liquids from pipes, liquid bridges and junctions, or from the rear.
 
 health: 100
+leaks: true
 liquidCapacity: 2
 liquidPressure: 10
 
