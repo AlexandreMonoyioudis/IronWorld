@@ -74,7 +74,7 @@ Events.on(ContentInitEvent, function () {
     if (windAir == null) {
         Log.err("[IronWorld] Could not find Wind Air to configure mend-cycle consumption.");
     } else {
-        const windAirPerMend = 1.5;
+        const windAirPerMend = 5;
         function configureShieldWall(block) {
             block.liquidFilter[windAir.id] = true;
             block.buildType = function () {
