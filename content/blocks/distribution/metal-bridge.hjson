@@ -5,6 +5,7 @@ description: Transfers items across gaps to a linked bridge conveyor.
 
 health: 50
 size: 1
+hasPower: false
 range: 6
 transportTime: 3
 itemCapacity: 10
