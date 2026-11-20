@@ -1,0 +1,38 @@
+type: MendProjector
+name: reinforced-alloy-shield-wall
+localizedName: Reinforced Alloy Shield Wall
+description: Uses Air to repair itself when a mend pulse completes.
+details: Requires 1.5 :ironworld-wind-air: Wind Air per mend pulse; Air is consumed only when it repairs itself.
+
+size: 3
+health: 1200
+hasLiquids: true
+liquidCapacity: 10
+range: 0.1
+phaseRangeBoost: 0
+reload: 50
+healPercent: 2
+
+consumes: {
+    power: 2
+}
+
+requirements: [
+    Permendur/80
+    Black-Steel/60
+]
+
+category: defense
+research: {
+    parent: alloy-shield-wall
+    objectives: [
+        {
+            type: Produce
+            content: Black-Steel
+        }
+    ]
+}
+researchCost: [
+    Permendur/160
+    Black-Steel/120
+]
