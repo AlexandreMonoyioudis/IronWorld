@@ -1,6 +1,5 @@
 type: GenericCrafter
-name: steel-factory
-localizedName: Steel Factory
+name: Steel Factory
 description: Combines Slag and Cobalt into Black Steel using Air.
 
 size: 4
