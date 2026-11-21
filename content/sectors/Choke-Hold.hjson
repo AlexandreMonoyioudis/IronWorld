@@ -1,6 +1,6 @@
 planet: IronWorld
 sector: 1
-localizedName: Choke Hold
+name: Choke Hold
 captureWave: 16
 difficulty: 1
 research: {
