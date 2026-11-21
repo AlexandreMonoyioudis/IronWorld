@@ -1,6 +1,5 @@
 type: Sorter
-name: Metal-sorter
-localizedName: Metal Sorter
+name: Metal Sorter
 description: Routes selected items forward and sends other items to the sides.
 
 health: 25
