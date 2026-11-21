@@ -1,6 +1,5 @@
 type: ItemTurret
-name: helicalrailgun
-localizedName: Helical Rail Gun
+name: Helical Rail Gun
 description: Shoots projectiles at enemies. Coilgun/railgun hybrid. Shoots faster than a coilgun, but slower than a railgun.
 
 size: 4
