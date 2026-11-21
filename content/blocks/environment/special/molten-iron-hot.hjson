@@ -1,6 +1,5 @@
 type: Floor
-name: molten-iron-hot
-localizedName: Hot Molten Iron
+name: Hot Molten Iron
 description: Molten iron with enough geothermal heat to run a thermal generator at three-quarter efficiency.
 
 variants: 0
