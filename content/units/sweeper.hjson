@@ -1,6 +1,5 @@
 type: tank
-name: sweeper
-localizedName: Sweeper
+name: Sweeper
 description: A moon skimmer armed with an overclocked coilgun.
 
 tier: 3
