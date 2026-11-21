@@ -1,6 +1,5 @@
 type: ThermalGenerator
-name: small-geothermal-generator
-localizedName: Small Geothermal Generator
+name: Small Geothermal Generator
 description: Generates power from heat in the ground.
 
 size: 1
