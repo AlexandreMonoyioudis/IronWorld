@@ -1,6 +1,5 @@
 type: tank
-name: scourer
-localizedName: Scourer
+name: Scourer
 description: A moon skimmer armed with three small coilguns.
 
 tier: 2
