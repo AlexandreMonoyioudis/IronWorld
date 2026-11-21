@@ -1,5 +1,4 @@
 type: Floor
-name: iron-floor
-localizedName: Iron Floor
+name: Iron Floor
 description: A solid iron surface.
 variants: 3
