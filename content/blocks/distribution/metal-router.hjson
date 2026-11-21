@@ -1,6 +1,5 @@
 type: Router
-name: metal-router
-localizedName: Metal Router
+name: Metal Router
 description: Distributes items to adjacent blocks in rotation.
 
 health: 25
