@@ -1,6 +1,5 @@
 type: Floor
-name: molten-iron-warm
-localizedName: Warm Molten Iron
+name: Warm Molten Iron
 description: Molten iron with enough geothermal heat to run a thermal generator at half efficiency.
 
 variants: 0
