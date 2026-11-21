@@ -1,6 +1,5 @@
 type: ItemBridge
-name: Metal-bridge
-localizedName: Metal Bridge
+name: Metal Bridge
 description: Transfers items across gaps to a linked bridge conveyor.
 
 health: 50
