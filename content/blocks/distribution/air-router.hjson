@@ -1,6 +1,5 @@
 type: LiquidRouter
-name: air-router
-localizedName: Air Router
+name: Air Router
 description: Distributes liquids to adjacent blocks at high pressure.
 
 health: 120
