@@ -1,6 +1,5 @@
 type: StaticWall
-name: dark-iron-wall
-localizedName: Dark Iron Wall
+name: Dark Iron Wall
 description: Impassable dark iron terrain.
 variants: 3
 buildVisibility: hidden

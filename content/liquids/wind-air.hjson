@@ -1,5 +1,4 @@
-name: wind-air
-localizedName: Air
+name: Air
 description: A gas found in the atmosphere.
 color: "ffffff"
 gas: true

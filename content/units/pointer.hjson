@@ -1,6 +1,5 @@
 type: legs
-name: pointer
-localizedName: Pointer
+name: Pointer
 description: A crawling unit armed with a compact helical railgun.
 
 

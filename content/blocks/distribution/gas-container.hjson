@@ -1,6 +1,5 @@
 type: LiquidRouter
-name: gas-container
-localizedName: Gas Container
+name: Gas Container
 description: Stores and distributes gases and other liquids.
 
 size: 2

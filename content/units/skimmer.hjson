@@ -1,6 +1,5 @@
 type: tank
-name: skimmer
-localizedName: Skimmer
+name: Skimmer
 description: A boost-capable tank unit armed with a rotating coilgun.
 
 tier: 1

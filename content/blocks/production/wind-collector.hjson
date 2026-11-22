@@ -1,6 +1,5 @@
 type: GenericCrafter
-name: wind-collector
-localizedName: Wind Collector
+name: Wind Collector
 description: Passively collects Air from the atmosphere over time.
 
 size: 2

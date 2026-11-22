@@ -1,6 +1,5 @@
 type: legs
-name: cage-guard
-localizedName: Cage Guard
+name: Cage Guard
 description: A four-legged core guard armed with twin coilguns.
 
 health: 125

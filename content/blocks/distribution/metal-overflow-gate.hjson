@@ -1,6 +1,5 @@
 type: OverflowGate
-name: metal-overflow-gate
-localizedName: Metal Overflow Gate
+name: Metal Overflow Gate
 description: Sends items forward when possible and overflows them to the sides otherwise.
 
 health: 25

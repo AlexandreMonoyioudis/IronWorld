@@ -1,6 +1,5 @@
 type: ItemTurret
-name: coilgun
-localizedName: Coilgun
+name: Coilgun
 description: Fires a slow electromagnetic slug at enemies.
 
 size: 2

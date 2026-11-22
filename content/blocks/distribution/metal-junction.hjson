@@ -1,6 +1,5 @@
 type: Junction
-name: metal-junction
-localizedName: Metal Junction
+name: Metal Junction
 description: Allows item conveyors to cross without mixing their lanes.
 
 health: 25

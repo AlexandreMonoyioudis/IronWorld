@@ -1,6 +1,6 @@
 planet: IronWorld
 sector: 0
-localizedName: ImpactCrater
+name: ImpactCrater
 alwaysUnlocked: true
 overrideLaunchDefaults: true
 allowLaunchSchematics: false
