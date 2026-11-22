@@ -55,7 +55,7 @@ requirements: [
 
 category: turret
 research: {
-    parent: small-geothermal-generator
+    parent: core-cage
 }
 researchCost: [
     Iron/100
