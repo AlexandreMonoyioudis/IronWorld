@@ -4,5 +4,5 @@
   "author": "Alexandre Monoyioudis",
   "description": "An iron-rich moon orbits serpulo, capture it.",
   "version": "0.1",
-  "minGameVersion": "159"
+  "minGameVersion": "147"
 }
