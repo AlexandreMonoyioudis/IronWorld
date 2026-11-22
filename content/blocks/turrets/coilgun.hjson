@@ -19,7 +19,7 @@ ammoTypes: {
         type: BasicBulletType
         speed: 6
         damage: 25
-        lifetime: 19
+        lifetime: 23
         width: 10
         height: 14
         hitSound: explosion
@@ -32,7 +32,7 @@ ammoTypes: {
         type: BasicBulletType
         speed: 6
         damage: 30
-        lifetime: 19
+        lifetime: 23
         width: 12
         height: 16
         hitSound: explosion
