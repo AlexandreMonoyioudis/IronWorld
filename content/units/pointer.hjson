@@ -39,7 +39,7 @@ weapons: [
             type: BasicBulletType
             speed: 15
             damage: 50
-            lifetime: 13.33
+            lifetime: 15
             width: 10
             height: 40
             hitSound: explosion
