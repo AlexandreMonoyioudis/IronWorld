@@ -1,6 +1,5 @@
 type: Drill
-name: kinetic-drill
-localizedName: "Kinetic Drill"
+name: "Kinetic Drill"
 description: "Uses kinetic energy to remove surface metals."
 // Drill Stats
 tier: 2

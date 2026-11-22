@@ -1,6 +1,5 @@
 type: Conveyor
-name: iron-conveyor
-localizedName: "Iron Conveyor"
+name: Iron Conveyor
 description: "Transports items forward."
 category: distribution
 

@@ -1,6 +1,6 @@
 planet: IronWorld
 sector: 2
-localizedName: IronMounds
+name: IronMounds
 captureWave: 20
 difficulty: 1
 research: {

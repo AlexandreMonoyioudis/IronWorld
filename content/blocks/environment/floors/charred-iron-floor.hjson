@@ -1,5 +1,4 @@
 type: Floor
-name: charred-iron-floor
-localizedName: Charred Iron Floor
+name: Charred Iron Floor
 description: Iron ground darkened by intense heat.
 variants: 3

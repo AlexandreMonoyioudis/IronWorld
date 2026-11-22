@@ -1,7 +1,6 @@
-localizedName: "Core: Cage"
+name: "Core: «Cage»"
 description: "Core of the base. Once destroyed, the sector is lost."
 type: CoreBlock
-name: core-cage
 alwaysUnlocked: true
 buildVisibility: editorOnly
 category: effect

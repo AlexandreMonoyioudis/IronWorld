@@ -1,6 +1,5 @@
 type: OverflowGate
-name: metal-underflow-gate
-localizedName: Metal Underflow Gate
+name: Metal Underflow Gate
 description: Sends items to the sides when possible and underflows them forward otherwise.
 
 health: 25

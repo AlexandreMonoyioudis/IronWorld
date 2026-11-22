@@ -1,4 +1,3 @@
 type: OreBlock
-name: cobalt-ore
 itemDrop: Cobalt
-localizedName: "Cobalt Ore"
+name: "Cobalt Ore"

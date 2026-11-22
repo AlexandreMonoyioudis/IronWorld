@@ -1,6 +1,5 @@
 type: ThermalGenerator
-name: geothermal-generator
-localizedName: Geothermal Generator
+name: Geothermal Generator
 description: Produces more power per heat source compared to the smaller variant.
 
 size: 2

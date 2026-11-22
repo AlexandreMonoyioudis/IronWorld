@@ -1,6 +1,5 @@
 type: GenericCrafter
-name: iron-melter
-localizedName: Iron Melter
+name: Iron Melter
 description: Converts Iron into Slag.
 
 size: 2
