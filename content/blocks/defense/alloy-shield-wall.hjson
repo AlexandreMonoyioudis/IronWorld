@@ -17,6 +17,9 @@ requirements: [
     Permendur/40
 ]
 
+consumes: {
+    power: 0.25
+}
 category: defense
 research: {
     parent: core-cage
