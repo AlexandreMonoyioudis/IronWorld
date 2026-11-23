@@ -8,15 +8,15 @@ squareSprite: false
 category: crafting
 
 requirements: [
-    Cobalt/40
-    Iron/20
+    Cobalt/10
+    Iron/40
 ]
 
 research: {
-    parent: small-geothermal-generator
+    parent: core-cage
 }
 researchCost: [
-    Cobalt/100
+    Cobalt/50
     Iron/200
 ]
 
