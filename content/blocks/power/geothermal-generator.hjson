@@ -32,8 +32,8 @@ research: {
     ]
 }
 researchCost: [
-    Iron/2000
-    Cobalt/2000
+    Iron/4000
+    Cobalt/3000
     Permendur/1500
-    Black-Steel/300
+    Black-Steel/1500
 ]

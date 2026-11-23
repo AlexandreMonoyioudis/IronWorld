@@ -33,7 +33,7 @@ weapons: [
             type: BasicBulletType
             speed: 4
             damage: 13
-            lifetime: 19
+            lifetime: 24
             hitSound: explosion
             hitSoundVolume: 0.2
             frontColor: b0b0b0
