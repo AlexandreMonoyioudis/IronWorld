@@ -16,6 +16,191 @@ const Fx = Packages.mindustry.content.Fx;
 const Turret = Packages.mindustry.world.blocks.defense.turrets.Turret;
 const Building = Packages.mindustry.gen.Building;
 const Unit = Packages.mindustry.gen.Unit;
+const UnitType = Packages.mindustry.type.UnitType;
+const CrawlUnit = Packages.mindustry.gen.CrawlUnit;
+const EntityMapping = Packages.mindustry.gen.EntityMapping;
+const Blocks = Packages.mindustry.content.Blocks;
+const Liquids = Packages.mindustry.content.Liquids;
+const Angles = Packages.arc.math.Angles;
+const Draw = Packages.arc.graphics.g2d.Draw;
+const crawlerBodies = new java.util.WeakHashMap();
+const crawlerSegmentSpacing = 3;
+const crawlerResetDistance = 24;
+const crawlerSubmergedAlpha = 0.3;
+const crawlerMaxDrowning = 0.98;
+const crawlerLavaDrownTime = 345;
+
+function crawlerBody(unit) {
+    let body = crawlerBodies.get(unit);
+    if (body == null || body.id !== unit.id) {
+        const segments = [];
+        const segmentCount = Mathf["randomSeed(long,int,int)"](unit.id, 4, unit.type.segments);
+        // Rhino retains const bindings across loop iterations.
+        for (let i = 0; i < segmentCount; i++) {
+            var distance = (segmentCount - i) * crawlerSegmentSpacing;
+            segments.push({
+                x: unit.x + Angles.trnsx(unit.rotation + 180, distance),
+                y: unit.y + Angles.trnsy(unit.rotation + 180, distance),
+                rotation: unit.rotation,
+                submersion: 0,
+                lavaFloor: null
+            });
+        }
+        body = {id: unit.id, x: unit.x, y: unit.y, segments: segments, submersion: 0, lavaFloor: null};
+        crawlerBodies.put(unit, body);
+    }
+    return body;
+}
+
+function updateCrawlerBody(unit) {
+    let body = crawlerBody(unit);
+    const dx = unit.x - body.x;
+    const dy = unit.y - body.y;
+    if (dx * dx + dy * dy > crawlerResetDistance * crawlerResetDistance) {
+        crawlerBodies.remove(unit);
+        body = crawlerBody(unit);
+    }
+    body.x = unit.x;
+    body.y = unit.y;
+
+    let parentX = unit.x;
+    let parentY = unit.y;
+    for (let i = body.segments.length - 1; i >= 0; i--) {
+        var segment = body.segments[i];
+        var x = parentX - segment.x;
+        var y = parentY - segment.y;
+        var distance = Math.sqrt(x * x + y * y);
+        if (distance > 0.001) {
+            segment.x = parentX - x * crawlerSegmentSpacing / distance;
+            segment.y = parentY - y * crawlerSegmentSpacing / distance;
+            segment.rotation = Angles.angle(segment.x, segment.y, parentX, parentY);
+        } else {
+            segment.x = parentX + Angles.trnsx(segment.rotation + 180, crawlerSegmentSpacing);
+            segment.y = parentY + Angles.trnsy(segment.rotation + 180, crawlerSegmentSpacing);
+        }
+        parentX = segment.x;
+        parentY = segment.y;
+    }
+    return body;
+}
+
+function crawlerLavaFloor(x, y) {
+    const tile = Vars.world.tileWorld(x, y);
+    if (tile == null || tile.block() !== Blocks.air) return null;
+    const floor = tile.floor();
+    const lava = (floor.isLiquid && floor.liquidDrop === Liquids.slag) ||
+        floor.name === "ironworld-molten-iron" ||
+        floor.name === "ironworld-molten-iron-hot" ||
+        floor.name === "ironworld-molten-iron-warm";
+    return lava ? floor : null;
+}
+
+function updateCrawlerSubmersion(state, x, y) {
+    const floor = crawlerLavaFloor(x, y);
+    if (floor != null) {
+        state.lavaFloor = floor;
+        state.submersion = Math.min(crawlerMaxDrowning, state.submersion + Time.delta / crawlerLavaDrownTime);
+    } else {
+        state.submersion = Math.max(0, state.submersion - Time.delta / 50);
+        if (state.submersion === 0) state.lavaFloor = null;
+    }
+}
+
+function crawlerDrowningAlpha(progress) {
+    return 1 - (1 - crawlerSubmergedAlpha) * progress / crawlerMaxDrowning;
+}
+
+const ironCrawlerType = extend(UnitType, "iron-crawler", {
+    applyColor: function (unit) {
+        this.super$applyColor(unit);
+        if (unit.drownTime > 0) Draw.alpha(crawlerDrowningAlpha(unit.drownTime));
+    },
+    applyOutlineColor: function (unit) {
+        this.super$applyOutlineColor(unit);
+        if (unit.drownTime > 0) Draw.alpha(crawlerDrowningAlpha(unit.drownTime));
+    },
+    drawCrawl: function (unit) {
+        const body = updateCrawlerBody(unit);
+        const headDrowning = unit.drownTime;
+        const headFloor = unit.lastDrownFloor;
+        try {
+            for (let pass = 0; pass < 2; pass++) {
+                var regions = pass === 0 ? this.segmentOutlineRegions : this.segmentRegions;
+                for (let i = 0; i < body.segments.length; i++) {
+                    var segment = body.segments[i];
+                    unit.drownTime = segment.submersion;
+                    unit.lastDrownFloor = segment.lavaFloor;
+                    this.super$applyColor(unit);
+                    if (pass === 0) this.super$applyOutlineColor(unit);
+                    if (segment.submersion > 0) Draw.alpha(crawlerDrowningAlpha(segment.submersion));
+                    Draw.rect(regions[i], segment.x, segment.y, segment.rotation - 90);
+                    if (this.drawCell && pass !== 0 && this.segmentCellRegions[i].found()) {
+                        Draw.color(this.cellColor(unit));
+                        if (segment.submersion > 0) Draw.alpha(crawlerDrowningAlpha(segment.submersion));
+                        Draw.rect(this.segmentCellRegions[i], segment.x, segment.y, segment.rotation - 90);
+                    }
+                }
+            }
+        } finally {
+            unit.drownTime = headDrowning;
+            unit.lastDrownFloor = headFloor;
+            Draw.reset();
+        }
+    }
+});
+const crawlerEntityProvider = prov(function () {
+    return CrawlUnit.create();
+});
+ironCrawlerType.constructor = crawlerEntityProvider;
+// Keep the old entity mapping so previously saved crawlers load with the original hitbox.
+EntityMapping.register("ironworld-crawler-hitbox", crawlerEntityProvider);
+
+Events.on(Packages.mindustry.game.EventType.ResetEvent, function () {
+    crawlerBodies.clear();
+});
+
+Events.run(Trigger.update, function () {
+    if (Vars.headless || !Vars.state.isGame() || Vars.state.isPaused()) return;
+    Groups.unit.each(function (unit) {
+        if (unit.type.id !== ironCrawlerType.id) return;
+        const body = updateCrawlerBody(unit);
+        updateCrawlerSubmersion(body, unit.x, unit.y);
+        for (let i = 0; i < body.segments.length; i++) {
+            var segment = body.segments[i];
+            updateCrawlerSubmersion(segment, segment.x, segment.y);
+        }
+        unit.drownTime = body.submersion;
+        unit.lastDrownFloor = body.lavaFloor;
+    });
+});
+
+let invalidCrawlerEntityLogged = false;
+
+function createCrawlerAI() {
+    let previousOffset = 0;
+    return extend(GroundAI, {
+        updateMovement: function () {
+            const unit = this.unit;
+            if (!(unit instanceof CrawlUnit)) {
+                if (!invalidCrawlerEntityLogged) {
+                    Log.warn("[IronWorld] A saved Iron Crawler has the wrong entity type. Replace it to restore its body.");
+                    invalidCrawlerEntityLogged = true;
+                }
+                this.super$updateMovement();
+                this.super$faceTarget();
+                return;
+            }
+            // Remove the previous steering offset before recalculating the path.
+            unit.vel.rotate(-previousOffset);
+            this.super$updateMovement();
+            previousOffset = unit.vel.isZero(0.01) ? 0 : Mathf.sin(unit.crawlTime, 10, 75);
+            unit.vel.rotate(previousOffset);
+            this.super$faceTarget();
+        },
+        // Face once, after applying the new steering offset.
+        faceTarget: function () {}
+    });
+}
 
 const ammoFlag = "ironworld-impact-coilgun-ammo";
 const powerFlag = "ironworld-impact-coilgun-power";
@@ -53,6 +238,13 @@ Events.run(Trigger.uiDrawBegin, function () {
 });
 
 Events.on(ContentInitEvent, function () {
+    const ironCrawler = Vars.content.getByName(ContentType.unit, "ironworld-iron-crawler");
+    if (ironCrawler == null) {
+        Log.err("[IronWorld] Could not find the Iron Crawler to configure its movement.");
+    } else {
+        ironCrawler.aiController = createCrawlerAI;
+    }
+
     const permendur = Vars.content.getByName(ContentType.item, "ironworld-Permendur");
     const slag = Vars.content.getByName(ContentType.liquid, "slag");
     if (permendur == null || slag == null) {

@@ -1,0 +1,17 @@
+planet: IronWorld
+sector: 16
+name: Magma Field
+captureWave: 5
+difficulty: 2
+research: {
+    parent: Choke-Hold
+    objectives: [
+        {
+            type: SectorComplete
+            preset: Choke-Hold
+        }
+    ]
+}
+rules: {
+    loadout: []
+}

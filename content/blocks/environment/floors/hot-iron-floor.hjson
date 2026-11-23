@@ -1,0 +1,8 @@
+type: Floor
+name: Hot Iron Floor
+description: A heated iron surface.
+variants: 3
+attributes: {
+    heat: 0.05
+    light: 0.05
+}

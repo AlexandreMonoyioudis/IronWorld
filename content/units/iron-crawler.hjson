@@ -1,0 +1,25 @@
+type: crawl
+name: Iron Crawler
+description: A segmented crawler that crushes its way toward enemy structures.
+
+isEnemy: true
+health: 260
+armor: 4
+speed: .6
+accel: 0.08
+drag: 0.005
+hitSize: 4
+rotateSpeed: 20
+targetAir: false
+crushDamage: 0.5
+canDrown: false
+immunities: [melting]
+
+segments: 20
+segmentUnits: 4
+segmentMag: 0
+segmentScl: 20
+segmentPhase: 16
+segmentRotSpeed: 1.5
+segmentMaxRot: 30
+clipSize: 136
