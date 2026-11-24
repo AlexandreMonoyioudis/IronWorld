@@ -117,14 +117,14 @@ function crawlerDrowningAlpha(progress) {
 const ironCrawlerType = extend(UnitType, "iron-crawler", {
     create: function (team) {
         const unit = this.super$create(team);
-        unit.maxHealth = crawlerSegmentCount(unit) * 10;
+        unit.maxHealth = crawlerSegmentCount(unit) * 3;
         unit.health = unit.maxHealth;
         return unit;
     },
     update: function (unit) {
         this.super$update(unit);
         // Mindustry restores maxHealth from the unit type when loading or syncing.
-        unit.maxHealth = crawlerSegmentCount(unit) * 10;
+        unit.maxHealth = crawlerSegmentCount(unit) * 3;
         unit.health = Math.min(unit.health, unit.maxHealth);
     },
     applyColor: function (unit) {
@@ -259,6 +259,45 @@ Events.on(ContentInitEvent, function () {
         Log.err("[IronWorld] Could not find the Iron Crawler to configure its movement.");
     } else {
         ironCrawler.aiController = createCrawlerAI;
+    }
+
+    const skimmerFabricator = Vars.content.getByName(ContentType.block, "ironworld-moon-skimmer-fabricator");
+    if (skimmerFabricator == null) {
+        Log.err("[IronWorld] Could not find the Moon Skimmer Fabricator to add its print-head animation.");
+    } else {
+        const Layer = Packages.mindustry.graphics.Layer;
+        const Fill = Packages.arc.graphics.g2d.Fill;
+        const Color = Packages.arc.graphics.Color;
+        const UnitFactory = Packages.mindustry.world.blocks.units.UnitFactory;
+        const laserColor = Color.valueOf("ffa836");
+        skimmerFabricator.buildType = function () {
+            return extend(UnitFactory.UnitFactoryBuild, skimmerFabricator, {
+                printWarm: 0,
+                updateTile: function () {
+                    this.super$updateTile();
+                    const printing = this.efficiency > 0 && this.currentPlan != -1;
+                    this.printWarm = Mathf.lerpDelta(this.printWarm, printing ? 1 : 0, 0.05);
+                },
+                draw: function () {
+                    this.super$draw();
+                    const warm = this.printWarm;
+                    const beamY = Mathf.lerp(8.5, Mathf.sin(Time.time, 38, 7), warm);
+                    const headX = Mathf.sin(Time.time, 11, 7.5) * warm;
+                    const beam = Core.atlas.find("ironworld-moon-skimmer-fabricator-beam");
+                    const head = Core.atlas.find("ironworld-moon-skimmer-fabricator-head");
+
+                    Draw.z(Layer.blockOver + 0.2);
+                    Draw.rect(beam, this.x, this.y + beamY, 19, 2.5);
+                    Draw.rect(head, this.x + headX, this.y + beamY - 0.5, 3.5, 3.5);
+                    if (warm > 0.05) {
+                        Draw.color(laserColor);
+                        Draw.alpha(warm * (0.6 + Mathf.absin(Time.time, 4, 0.4)));
+                        Fill.circle(this.x + headX, this.y + beamY - 2.4, 0.6);
+                    }
+                    Draw.reset();
+                }
+            });
+        };
     }
 
     const permendur = Vars.content.getByName(ContentType.item, "ironworld-Permendur");
