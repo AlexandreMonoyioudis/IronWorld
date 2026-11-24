@@ -270,29 +270,261 @@ Events.on(ContentInitEvent, function () {
         const Color = Packages.arc.graphics.Color;
         const UnitFactory = Packages.mindustry.world.blocks.units.UnitFactory;
         const laserColor = Color.valueOf("ffa836");
+        const Effect = Packages.mindustry.entities.Effect;
+        const Lines = Packages.arc.graphics.g2d.Lines;
+        let missingTeamSpriteLogged = false;
+        const outlineCache = {};
+        function traceIconOutline(pixmap) {
+            const edges = [];
+            const starts = {};
+            function filled(x, y) {
+                return x >= 0 && y >= 0 && x < pixmap.width && y < pixmap.height &&
+                    pixmap.getA(x, y) >= 128;
+            }
+            function addEdge(x, y, endX, endY, direction) {
+                const edge = {x: x, y: y, endX: endX, endY: endY, direction: direction, used: false};
+                const key = x + "," + y;
+                if (!starts[key]) starts[key] = [];
+                starts[key].push(edge);
+                edges.push(edge);
+            }
+            for (let y = 0; y < pixmap.height; y++) {
+                for (let x = 0; x < pixmap.width; x++) {
+                    if (!filled(x, y)) continue;
+                    if (!filled(x, y - 1)) addEdge(x, y, x + 1, y, 0);
+                    if (!filled(x + 1, y)) addEdge(x + 1, y, x + 1, y + 1, 1);
+                    if (!filled(x, y + 1)) addEdge(x + 1, y + 1, x, y + 1, 2);
+                    if (!filled(x - 1, y)) addEdge(x, y + 1, x, y, 3);
+                }
+            }
+            let outline = null;
+            let largestArea = 0;
+            for (let i = 0; i < edges.length; i++) {
+                if (edges[i].used) continue;
+                let first = edges[i];
+                let edge = first;
+                let points = [];
+                let area = 0;
+                while (edge && !edge.used) {
+                    edge.used = true;
+                    points.push([edge.x, edge.y]);
+                    area += edge.x * edge.endY - edge.endX * edge.y;
+                    if (edge.endX == first.x && edge.endY == first.y) {
+                        points.push([first.x, first.y]);
+                        if (Math.abs(area) > largestArea) {
+                            largestArea = Math.abs(area);
+                            outline = points;
+                        }
+                        break;
+                    }
+                    let choices = starts[edge.endX + "," + edge.endY] || [];
+                    let next = null;
+                    let bestTurn = 5;
+                    for (let j = 0; j < choices.length; j++) {
+                        let candidate = choices[j];
+                        let turn = (candidate.direction - edge.direction + 4) % 4;
+                        let rank = (turn + 3) % 4;
+                        if (!candidate.used && rank < bestTurn) {
+                            next = candidate;
+                            bestTurn = rank;
+                        }
+                    }
+                    edge = next;
+                }
+            }
+            return outline;
+        }
+        function findSprite(directory, filename) {
+            if (!directory.exists()) return null;
+            const pending = [directory];
+            while (pending.length > 0) {
+                var files = pending.pop().list();
+                for (var i = 0; i < files.length; i++) {
+                    if (files[i].isDirectory()) {
+                        pending.push(files[i]);
+                    } else if (String(files[i].name()) == filename) {
+                        return files[i];
+                    }
+                }
+            }
+            return null;
+        }
+        function getUnitOutline(unit) {
+            const icon = unit.fullIcon;
+            const cached = outlineCache[unit.name];
+            if (cached && cached.icon.equals(icon)) return cached;
+            const mod = unit.minfo.mod;
+            let sprite = null;
+            if (mod != null) {
+                const name = String(unit.name);
+                const prefix = String(mod.name) + "-";
+                const spriteName = name.indexOf(prefix) == 0 ? name.substring(prefix.length) : name;
+                sprite = findSprite(mod.root.child("sprites"), spriteName + ".png");
+            }
+            let outline = null;
+            if (sprite != null) {
+                const pixmap = new Packages.arc.graphics.Pixmap(sprite);
+                try {
+                    const points = traceIconOutline(pixmap);
+                    if (points != null) {
+                        outline = {icon: icon, points: points, width: pixmap.width, height: pixmap.height};
+                    }
+                } finally {
+                    pixmap.dispose();
+                }
+            }
+            if (outline == null) {
+                Log.err("[IronWorld] Could not find a drawable source sprite for @; using a rectangular print path.", unit.name);
+                outline = {
+                    icon: icon, width: icon.width, height: icon.height,
+                    points: [[0, 0], [icon.width, 0], [icon.width, icon.height], [0, icon.height], [0, 0]]
+                };
+            }
+            outlineCache[unit.name] = outline;
+            return outline;
+        }
+        // A scaled-down copy of Fx.sparkShoot: a third of the size and a quarter of the lifetime.
+        const nozzleSpark = new Effect(3, function (e) {
+            Draw.color(Color.valueOf("ffa836"), Color.white, e.fin());
+            Lines.stroke(e.fout() * 0.4 + 0.2);
+            for (let i = 0; i < 3; i++) {
+                Mathf.rand.setSeed(e.id * 31 + i);
+                const angle = Mathf.rand.random(360);
+                const dist = e.finpow() * 8 * Mathf.rand.random(0.5, 1);
+                Lines.lineAngle(
+                    e.x + Mathf.cosDeg(angle) * dist,
+                    e.y + Mathf.sinDeg(angle) * dist,
+                    angle,
+                    e.fout() * 1.7 + 0.2
+                );
+            }
+            Draw.reset();
+        });
         skimmerFabricator.buildType = function () {
             return extend(UnitFactory.UnitFactoryBuild, skimmerFabricator, {
                 printWarm: 0,
                 updateTile: function () {
                     this.super$updateTile();
-                    const printing = this.efficiency > 0 && this.currentPlan != -1;
+                    const printing = this.efficiency > 0 && this.currentPlan != -1 && this.payload == null;
                     this.printWarm = Mathf.lerpDelta(this.printWarm, printing ? 1 : 0, 0.05);
+                    if (printing && this.printWarm > 0.5 && this.printingPass && this.nozzleX !== undefined && Mathf.chance(0.35 * Time.delta)) {
+                        nozzleSpark.at(this.nozzleX, this.nozzleY);
+                    }
                 },
                 draw: function () {
+                    // Hide the vanilla build effect (yellow tint and scan line) by drawing without a current plan,
+                    // then draw the unit fading in ourselves.
+                    const realPlan = this.currentPlan;
+                    this.currentPlan = -1;
                     this.super$draw();
+                    this.currentPlan = realPlan;
+                    const teamRegion = Core.atlas.find(skimmerFabricator.name + "-team");
+                    if (teamRegion.found()) {
+                        const progress = Mathf.clamp(this.fraction());
+                        if (progress > 0) {
+                            // The strip occupies pixels 31 through 64 of the 96-pixel sprite.
+                            const visible = (31 + 34 * progress) / 96;
+                            const partial = new Packages.arc.graphics.g2d.TextureRegion(teamRegion);
+                            partial.setU2(teamRegion.u + (teamRegion.u2 - teamRegion.u) * visible);
+                            const width = teamRegion.width * teamRegion.scl();
+                            const height = teamRegion.height * teamRegion.scl();
+                            Draw.z(Layer.blockOver + 0.3);
+                            Draw.color(this.team.color);
+                            Draw.rect(partial, this.x - width * (1 - visible) / 2, this.y, width * visible, height);
+                            Draw.color();
+                        }
+                    } else if (!missingTeamSpriteLogged) {
+                        Log.err("[IronWorld] Could not find the Moon Skimmer Fabricator team sprite.");
+                        missingTeamSpriteLogged = true;
+                    }
+                    if (realPlan != -1 && this.payload == null) {
+                        Draw.z(Layer.blockOver);
+                        Draw.alpha(this.fraction());
+                        Draw.rect(this.unit().fullIcon, this.x, this.y, this.rotdeg() - 90);
+                        Draw.reset();
+                    }
                     const warm = this.printWarm;
-                    const beamY = Mathf.lerp(8.5, Mathf.sin(Time.time, 38, 7), warm);
-                    const headX = Mathf.sin(Time.time, 11, 7.5) * warm;
+                    // The base and top sprites don't rotate, so the beam and head stay fixed as well.
+                    const rot = 0;
+                    const sweepAngle = (rot - 90) * Mathf.degRad;
+                    const beamAngle = rot * Mathf.degRad;
+                    const sweepX = Math.cos(sweepAngle);
+                    const sweepY = Math.sin(sweepAngle);
+                    const beamX = Math.cos(beamAngle);
+                    const beamYDir = Math.sin(beamAngle);
+
+                    // Transform the sprite outline to match the unit's displayed rotation.
+                    const unit = realPlan != -1 ? this.unit() : skimmerFabricator.plans.get(0).unit;
+                    const icon = unit.fullIcon;
+                    const width = icon.width * icon.scl();
+                    const height = icon.height * icon.scl();
+                    const unitAngle = (this.rotdeg() - 90) * Mathf.degRad;
+                    const cos = Math.cos(unitAngle);
+                    const sin = Math.sin(unitAngle);
+                    const outline = getUnitOutline(unit);
+                    const path = outline.points.map(function (point) {
+                        const x = (point[0] / outline.width - 0.5) * width;
+                        const y = (0.5 - point[1] / outline.height) * height;
+                        return [x * cos - y * sin, -(x * sin + y * cos)];
+                    });
+                    const halfW = Mathf.clamp(width / 2, 3, 8);
+                    const inner = halfW - 1.5;
+                    const legs = 8;
+                    for (let i = 0; i <= legs; i++) {
+                        path.push([i % 2 == 0 ? -inner : inner, -inner + (2 * inner * i) / legs]);
+                    }
+                    let pathLength = 0;
+                    for (let i = 1; i < path.length; i++) {
+                        pathLength += Math.hypot(path[i][0] - path[i - 1][0], path[i][1] - path[i - 1][1]);
+                    }
+                    const printShare = 0.85;
+                    const cycle = (this.time / 240) % 1;
+                    let pathA;
+                    let pathB;
+                    let printingPass = false;
+                    if (cycle < printShare) {
+                        printingPass = true;
+                        let remaining = (cycle / printShare) * pathLength;
+                        pathA = path[path.length - 1][0];
+                        pathB = path[path.length - 1][1];
+                        for (let i = 1; i < path.length; i++) {
+                            let segment = Math.hypot(path[i][0] - path[i - 1][0], path[i][1] - path[i - 1][1]);
+                            if (remaining <= segment) {
+                                const f = remaining / segment;
+                                pathA = Mathf.lerp(path[i - 1][0], path[i][0], f);
+                                pathB = Mathf.lerp(path[i - 1][1], path[i][1], f);
+                                break;
+                            }
+                            remaining -= segment;
+                        }
+                    } else {
+                        const f = Mathf.clamp((cycle - printShare) / (1 - printShare));
+                        const eased = f * f * (3 - 2 * f);
+                        const last = path[path.length - 1];
+                        pathA = Mathf.lerp(last[0], path[0][0], eased);
+                        pathB = Mathf.lerp(last[1], path[0][1], eased);
+                    }
+                    this.printingPass = printingPass;
+
+                    // The nozzle tip is below the centre of the head sprite.
+                    const along = Mathf.lerp(-8.5, pathB - 1.6, warm);
+                    const across = pathA * warm;
                     const beam = Core.atlas.find("ironworld-moon-skimmer-fabricator-beam");
                     const head = Core.atlas.find("ironworld-moon-skimmer-fabricator-head");
+                    const bx = this.x + sweepX * along;
+                    const by = this.y + sweepY * along;
+                    const hx = bx + beamX * across;
+                    const hy = by + beamYDir * across;
+                    this.nozzleX = hx + sweepX * 1.6;
+                    this.nozzleY = hy + sweepY * 1.6;
 
                     Draw.z(Layer.blockOver + 0.2);
-                    Draw.rect(beam, this.x, this.y + beamY, 19, 2.5);
-                    Draw.rect(head, this.x + headX, this.y + beamY - 0.5, 3.5, 3.5);
-                    if (warm > 0.05) {
+                    Draw.rect(beam, bx, by, 19, 2.5, rot);
+                    Draw.rect(head, hx, hy, 3.5, 3.5, rot);
+                    if (warm > 0.05 && this.printingPass) {
                         Draw.color(laserColor);
                         Draw.alpha(warm * (0.6 + Mathf.absin(Time.time, 4, 0.4)));
-                        Fill.circle(this.x + headX, this.y + beamY - 2.4, 0.6);
+                        Fill.circle(this.nozzleX, this.nozzleY, 0.6);
                     }
                     Draw.reset();
                 }

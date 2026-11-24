@@ -1,0 +1,43 @@
+type: UnitFactory
+name: Moon Skimmer Fabricator
+description: Prints Skimmers from Permendur and Iron.
+
+size: 3
+health: 400
+category: units
+
+plans: [
+    {
+        unit: skimmer
+        time: 1200
+        requirements: [
+            Permendur/5
+            Iron/15
+        ]
+    }
+]
+
+consumes: {
+    power: 2
+}
+
+requirements: [
+    Iron/100
+    Cobalt/50
+    Permendur/60
+]
+
+research: {
+    parent: Vacuum-Induction-Melter
+    objectives: [
+        {
+            type: SectorComplete
+            preset: Choke-Hold
+        }
+    ]
+}
+researchCost: [
+    Iron/200
+    Cobalt/100
+    Permendur/120
+]
