@@ -1,0 +1,28 @@
+type: StackConveyor
+name: Industrial Conveyor
+description: "Moves items in batches of 10 at half the speed of the Plastanium Conveyor. Load and unload at the ends."
+category: distribution
+
+//Stat
+health: 90
+speed: 0.0333333
+itemCapacity: 10
+
+requirements: [
+    Iron/1
+    metal-cement/1
+]
+
+research: {
+    parent: iron-conveyor
+    objectives: [
+        {
+            type: Produce
+            content: metal-cement
+        }
+    ]
+}
+researchCost: [
+    Iron/500
+    metal-cement/200
+]

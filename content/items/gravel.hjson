@@ -1,0 +1,11 @@
+name: "gravel"
+localizedName: Gravel
+description: "Loose spiky stone with flint chips, mined from gravel ground. Pressed with Slag into Metal Cement."
+color: "837F7E"
+hardness: 0
+flammability: 0
+explosiveness: 0
+radioactivity: 0
+charge: 0
+shownPlanets: ["IronWorld"]
+research: Iron

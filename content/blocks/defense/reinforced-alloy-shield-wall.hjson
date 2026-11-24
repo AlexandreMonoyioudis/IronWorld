@@ -5,7 +5,7 @@ description: Uses Air to repair itself when a mend pulse completes.
 details: Requires 5 :ironworld-wind-air: Wind Air per mend pulse; Air is consumed only when it repairs itself.
 
 size: 3
-health: 1200
+health: 800
 hasLiquids: true
 liquidCapacity: 10
 range: 0.1
@@ -19,7 +19,7 @@ consumes: {
 
 requirements: [
     Permendur/80
-    Black-Steel/60
+    metal-cement/60
 ]
 
 category: defense
@@ -28,11 +28,11 @@ research: {
     objectives: [
         {
             type: Produce
-            content: Black-Steel
+            content: metal-cement
         }
     ]
 }
 researchCost: [
     Permendur/160
-    Black-Steel/120
+    metal-cement/120
 ]

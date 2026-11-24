@@ -1,0 +1,63 @@
+type: GenericCrafter
+name: Cement Press
+description: Presses Gravel and Slag into Metal Cement.
+
+size: 2
+health: 300
+itemCapacity: 20
+liquidCapacity: 1
+hasLiquids: true
+craftTime: 45
+outputItem: metal-cement/1
+
+drawer: {
+    type: DrawMulti
+    drawers: [
+        {
+            type: DrawRegion
+            suffix: -bottom
+        }
+        {
+            type: DrawPistons
+            sides: 2
+            sinMag: 14
+            sinScl: 20
+            sinOffset: 0
+            lenOffset: -14
+        }
+        {
+            type: DrawDefault
+        }
+    ]
+}
+
+consumes: {
+    items: [
+        gravel/2
+    ]
+    liquids: [
+        slag/0.01
+    ]
+}
+
+requirements: [
+    Iron/80
+    Cobalt/40
+    Permendur/10
+]
+
+category: crafting
+research: {
+    parent: iron-melter
+    objectives: [
+        {
+            type: SectorComplete
+            preset: Choke-Hold
+        }
+    ]
+}
+researchCost: [
+    Iron/200
+    Cobalt/100
+    Permendur/10
+]

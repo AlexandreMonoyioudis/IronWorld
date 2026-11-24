@@ -14,7 +14,7 @@ requirements: [
     Iron/100
     Cobalt/60
     Permendur/40
-    Black-Steel/20
+    metal-cement/20
 ]
 
 category: power
@@ -27,7 +27,7 @@ research: {
         }
         {
             type: Produce
-            content: Black-Steel
+            content: metal-cement
         }
     ]
 }
@@ -35,5 +35,5 @@ researchCost: [
     Iron/4000
     Cobalt/3000
     Permendur/1500
-    Black-Steel/1500
+    metal-cement/1500
 ]

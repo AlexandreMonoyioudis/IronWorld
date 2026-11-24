@@ -41,6 +41,7 @@ requirements: [
     Iron/100
     Cobalt/80
     Permendur/200
+    metal-cement/60
 ]
 
 category: crafting
@@ -57,4 +58,5 @@ researchCost: [
     Iron/200
     Cobalt/160
     Permendur/400
+    metal-cement/120
 ]

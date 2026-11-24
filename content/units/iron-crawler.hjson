@@ -4,8 +4,8 @@ description: A segmented crawler that crushes its way toward enemy structures. I
 
 isEnemy: true
 health: 100
-armor: 4
-speed: .6
+armor: 0
+speed: 1
 accel: 0.08
 drag: 0.005
 hitSize: 4

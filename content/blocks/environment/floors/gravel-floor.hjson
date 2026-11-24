@@ -1,0 +1,7 @@
+type: Floor
+name: gravel-floor
+localizedName: Gravel
+description: Spiky loose ground flecked with flint. Drills can mine Gravel from it.
+variants: 3
+itemDrop: gravel
+playerUnmineable: true
