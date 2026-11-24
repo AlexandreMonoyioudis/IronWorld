@@ -30,11 +30,15 @@ const crawlerSubmergedAlpha = 0.3;
 const crawlerMaxDrowning = 0.98;
 const crawlerLavaDrownTime = 345;
 
+function crawlerSegmentCount(unit) {
+    return Mathf["randomSeed(long,int,int)"](unit.id, 5, unit.type.segments);
+}
+
 function crawlerBody(unit) {
     let body = crawlerBodies.get(unit);
     if (body == null || body.id !== unit.id) {
         const segments = [];
-        const segmentCount = Mathf["randomSeed(long,int,int)"](unit.id, 4, unit.type.segments);
+        const segmentCount = crawlerSegmentCount(unit);
         // Rhino retains const bindings across loop iterations.
         for (let i = 0; i < segmentCount; i++) {
             var distance = (segmentCount - i) * crawlerSegmentSpacing;
@@ -111,6 +115,18 @@ function crawlerDrowningAlpha(progress) {
 }
 
 const ironCrawlerType = extend(UnitType, "iron-crawler", {
+    create: function (team) {
+        const unit = this.super$create(team);
+        unit.maxHealth = crawlerSegmentCount(unit) * 10;
+        unit.health = unit.maxHealth;
+        return unit;
+    },
+    update: function (unit) {
+        this.super$update(unit);
+        // Mindustry restores maxHealth from the unit type when loading or syncing.
+        unit.maxHealth = crawlerSegmentCount(unit) * 10;
+        unit.health = Math.min(unit.health, unit.maxHealth);
+    },
     applyColor: function (unit) {
         this.super$applyColor(unit);
         if (unit.drownTime > 0) Draw.alpha(crawlerDrowningAlpha(unit.drownTime));
