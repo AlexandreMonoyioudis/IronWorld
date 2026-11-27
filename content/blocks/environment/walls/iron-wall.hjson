@@ -1,5 +1,5 @@
 type: StaticWall
 name: Iron Wall
-description: Impassable iron terrain.
+description: Impassable terrain.
 variants: 3
 buildVisibility: hidden

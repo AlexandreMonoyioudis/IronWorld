@@ -1,6 +1,6 @@
 type: StackConveyor
 name: Industrial Conveyor
-description: "Moves items in batches of 10 at half the speed of the Plastanium Conveyor. Load and unload at the ends."
+description: Moves items. Load and unload at the ends.
 category: distribution
 
 //Stat

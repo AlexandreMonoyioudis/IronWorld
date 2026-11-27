@@ -1,7 +1,6 @@
 type: MendProjector
 name: Alloy Shield Wall
-description: Uses Air to repair itself when a mend pulse completes.
-details: Requires 5 :ironworld-wind-air: Air per mend pulse; Air is consumed only when it repairs itself.
+description: Uses air to mend itself. Requires 5 :ironworld-wind-air: Air per mend pulse; Air is consumed only when it repairs itself.
 
 size: 2
 health: 450

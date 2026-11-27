@@ -1,6 +1,6 @@
 type: Drill
 name: "Kinetic Drill"
-description: "Uses kinetic energy to remove surface metals."
+description: Uses kinetic energy to remove surface metals.
 // Drill Stats
 tier: 2
 drillTime: 450

@@ -1,5 +1,5 @@
 type: StaticWall
 name: Dark Iron Wall
-description: Impassable dark iron terrain.
+description: Impassable terrain.
 variants: 3
 buildVisibility: hidden
