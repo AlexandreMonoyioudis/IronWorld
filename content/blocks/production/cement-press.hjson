@@ -48,7 +48,7 @@ requirements: [
 
 category: crafting
 research: {
-    parent: iron-melter
+    parent: Vacuum-Induction-Melter
     objectives: [
         {
             type: OnSector
