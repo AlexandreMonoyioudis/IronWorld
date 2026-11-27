@@ -2,6 +2,7 @@ type: Conveyor
 name: Iron Conveyor
 description: "Transports items forward."
 category: distribution
+details: Moves items slowly due to low gravity of IronWorld. Moving items any faster would launch them off the belt.
 
 //Stat
 health: 25

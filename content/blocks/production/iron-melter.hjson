@@ -1,6 +1,6 @@
 type: GenericCrafter
 name: Iron Melter
-description: Converts Iron into Slag.
+description: Melts Iron into Slag.
 
 size: 2
 health: 250

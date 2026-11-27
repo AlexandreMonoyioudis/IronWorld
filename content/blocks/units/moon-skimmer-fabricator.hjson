@@ -1,6 +1,6 @@
 type: UnitFactory
 name: Moon Skimmer Fabricator
-description: Prints Skimmers from Permendur and Iron.
+description: Prints Skimmers.
 
 size: 3
 health: 400

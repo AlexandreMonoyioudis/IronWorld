@@ -1,6 +1,6 @@
 type: GenericCrafter
 name: Cement Press
-description: Presses Gravel and Slag into Metal Cement.
+description: Presses Gravel and Slag into metallic Cement.
 
 size: 2
 health: 300
