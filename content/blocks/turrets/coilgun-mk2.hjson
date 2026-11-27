@@ -30,7 +30,7 @@ ammoTypes: {
     Permendur: {
         type: BasicBulletType
         speed: 8
-        damage: 40
+        damage: 55
         lifetime: 23
         width: 12
         height: 16
@@ -43,7 +43,7 @@ ammoTypes: {
 }
 
 consumes: {
-    power: 10
+    power: 15
 }
 
 requirements: [
@@ -55,7 +55,7 @@ requirements: [
 
 category: turret
 research: {
-    parent: core-cage
+    parent: coilgun
 }
 researchCost: [
     Iron/500
