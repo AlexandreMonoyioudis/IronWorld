@@ -1,8 +1,7 @@
 type: MendProjector
 name: reinforced-alloy-shield-wall
-localizedName: Reinforced Alloy Shield Wall
 description: Uses Air to repair itself when a mend pulse completes.
-details: Requires 5 :ironworld-wind-air: Wind Air per mend pulse; Air is consumed only when it repairs itself.
+details: Requires 5 :ironworld-wind-air: Air per mend pulse; Air is consumed only when it repairs itself.
 
 size: 3
 health: 800
