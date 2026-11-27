@@ -39,7 +39,7 @@ weapons: [
         bullet: {
             type: BasicBulletType
             speed: 4
-            damage: 7
+            damage: 13
             lifetime: 23
             hitSound: explosion
             hitSoundVolume: 0.2
