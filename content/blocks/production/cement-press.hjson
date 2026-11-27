@@ -7,7 +7,7 @@ health: 300
 itemCapacity: 20
 liquidCapacity: 1
 hasLiquids: true
-craftTime: 45
+craftTime: 90
 outputItem: metal-cement/1
 
 drawer: {
@@ -20,10 +20,10 @@ drawer: {
         {
             type: DrawPistons
             sides: 2
-            sinMag: 14
-            sinScl: 20
+            sinMag: 3
+            sinScl: 7.162
             sinOffset: 0
-            lenOffset: -14
+            lenOffset: -10
         }
         {
             type: DrawDefault
