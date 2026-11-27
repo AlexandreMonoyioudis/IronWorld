@@ -2,6 +2,10 @@ type: tank
 name: Scourer
 description: A moon skimmer armed with three small coilguns.
 
+research: {
+    parent: skimmer
+}
+
 tier: 2
 health: 300
 speed: 2.5

@@ -1,0 +1,19 @@
+planet: IronWorld
+sector: 15
+name: Stare Down
+captureWave: 18
+difficulty: 2
+research: {
+    parent: Choke-Hold
+    objectives: [
+        {
+            type: SectorComplete
+            preset: Choke-Hold
+        }
+    ]
+}
+rules: {
+    loadout: []
+    attackMode: true
+    coreCapture: true
+}

@@ -8,7 +8,10 @@ const Vars = Packages.mindustry.Vars;
 const ContentType = Packages.mindustry.ctype.ContentType;
 const TechTreeNode = Packages.mindustry.content.TechTree.TechNode;
 const ContentInitEvent = Packages.mindustry.game.EventType.ContentInitEvent;
+const WorldLoadEvent = Packages.mindustry.game.EventType.WorldLoadEvent;
+const Team = Packages.mindustry.game.Team;
 const GroundAI = Packages.mindustry.ai.types.GroundAI;
+const BuilderAI = Packages.mindustry.ai.types.BuilderAI;
 const MendProjector = Packages.mindustry.world.blocks.defense.MendProjector;
 const Fonts = Packages.mindustry.ui.Fonts;
 const Mathf = Packages.arc.math.Mathf;
@@ -16,6 +19,7 @@ const Fx = Packages.mindustry.content.Fx;
 const Turret = Packages.mindustry.world.blocks.defense.turrets.Turret;
 const Building = Packages.mindustry.gen.Building;
 const Unit = Packages.mindustry.gen.Unit;
+const Units = Packages.mindustry.entities.Units;
 const UnitType = Packages.mindustry.type.UnitType;
 const CrawlUnit = Packages.mindustry.gen.CrawlUnit;
 const EntityMapping = Packages.mindustry.gen.EntityMapping;
@@ -29,6 +33,117 @@ const crawlerResetDistance = 24;
 const crawlerSubmergedAlpha = 0.3;
 const crawlerMaxDrowning = 0.98;
 const crawlerLavaDrownTime = 345;
+const cageGuardBuildRadius = 60 * Vars.tilesize;
+const cageGuardPursuitRadius = 30 * Vars.tilesize;
+let cageGuardType = null;
+
+function teamHasCageGuardCore(team) {
+    const cores = team.cores();
+    for (let i = 0; i < cores.size; i++) {
+        if (cores.get(i).block.unitType.equals(cageGuardType)) return true;
+    }
+    return false;
+}
+
+function createCageGuardBuilderAI() {
+    let lastPlan = null;
+    let cooldown = 0;
+    return extend(BuilderAI, {
+        updateMovement: function () {
+            const unit = this.unit;
+            const core = unit.closestCore();
+            const bullet = unit.type.weapons.first().bullet;
+            let enemy = null;
+            if (core != null && unit.within(core.x, core.y, cageGuardPursuitRadius)) {
+                enemy = Units.closestTarget(unit.team, unit.x, unit.y, this.fleeRange,
+                    boolf(function (target) {
+                        return target.within(core.x, core.y, cageGuardPursuitRadius) &&
+                            target.checkTarget(bullet.collidesAir, bullet.collidesGround);
+                    }),
+                    boolf(function (target) {
+                        return bullet.collidesGround &&
+                            target.within(core.x, core.y, cageGuardPursuitRadius) &&
+                            (unit.type.targetUnderBlocks || !target.block.underBullets);
+                    }));
+            }
+            if (enemy != null) {
+                unit.updateBuilding = false;
+                this.following = null;
+                this.assistFollowing = null;
+                unit.lookAt(enemy);
+                this.moveTo(enemy, unit.type.range * 0.8, 20);
+                return;
+            }
+
+            let currentPlan = unit.buildPlan();
+            if (lastPlan != null &&
+                (currentPlan == null || currentPlan.x !== lastPlan.x || currentPlan.y !== lastPlan.y)) {
+                const tile = lastPlan.tile();
+                if (tile != null && tile.block().equals(lastPlan.block) && tile.team().equals(this.unit.team)) {
+                    cooldown = 5 * Time.toSeconds;
+                    lastPlan = null;
+                    unit.updateBuilding = false;
+                    return;
+                }
+            }
+            lastPlan = null;
+
+            if (cooldown > 0) {
+                cooldown = Math.max(0, cooldown - Time.delta);
+                if (cooldown > 0) {
+                    unit.updateBuilding = false;
+                    return;
+                }
+            }
+
+            if (currentPlan != null &&
+                !unit.within(currentPlan.x * Vars.tilesize, currentPlan.y * Vars.tilesize, cageGuardBuildRadius)) {
+                unit.clearBuilding();
+                unit.vel.setZero();
+                currentPlan = null;
+            }
+
+            if (currentPlan == null) {
+                const plans = unit.team.data().plans;
+                for (let i = 0; i < plans.size; i++) {
+                    const plan = plans.get(i);
+                    if (!unit.within(plan.x * Vars.tilesize, plan.y * Vars.tilesize, cageGuardBuildRadius)) continue;
+
+                    const buildPlan = new Packages.mindustry.entities.units.BuildPlan(
+                        plan.x, plan.y, plan.rotation, plan.block, plan.config
+                    );
+                    if (buildPlan.placeable(unit.team)) {
+                        unit.addBuild(buildPlan);
+                        break;
+                    }
+                }
+            }
+
+            const previousBuildRadius = BuilderAI.buildRadius;
+            this.onlyAssist = true;
+            this.following = null;
+            this.assistFollowing = null;
+            BuilderAI.buildRadius = Math.min(previousBuildRadius, Math.max(1, unit.type.buildRange - unit.type.hitSize * 2));
+            try {
+                this.super$updateMovement();
+            } finally {
+                BuilderAI.buildRadius = previousBuildRadius;
+            }
+
+            currentPlan = unit.buildPlan();
+            this.following = null;
+            this.assistFollowing = null;
+            if (currentPlan != null &&
+                !unit.within(currentPlan.x * Vars.tilesize, currentPlan.y * Vars.tilesize, cageGuardBuildRadius)) {
+                unit.clearBuilding();
+                unit.vel.setZero();
+                unit.updateBuilding = false;
+                currentPlan = null;
+            }
+            lastPlan = this.unit.buildPlan();
+        }
+    });
+}
 
 function crawlerSegmentCount(unit) {
     return Mathf["randomSeed(long,int,int)"](unit.id, 5, unit.type.segments);
@@ -254,6 +369,17 @@ Events.run(Trigger.uiDrawBegin, function () {
 });
 
 Events.on(ContentInitEvent, function () {
+    const cageGuard = Vars.content.getByName(ContentType.unit, "ironworld-cage-guard");
+    if (cageGuard == null) {
+        Log.err("[IronWorld] Could not find the Cage Guard to configure its builder AI.");
+    } else {
+        cageGuardType = cageGuard;
+        const defaultController = cageGuard.controller;
+        cageGuard.controller = function (unit) {
+            return unit.team.isAI() ? createCageGuardBuilderAI() : defaultController.get(unit);
+        };
+    }
+
     const ironCrawler = Vars.content.getByName(ContentType.unit, "ironworld-iron-crawler");
     if (ironCrawler == null) {
         Log.err("[IronWorld] Could not find the Iron Crawler to configure its movement.");
@@ -654,6 +780,20 @@ Events.on(ContentInitEvent, function () {
         });
     };
     Log.info("[IronWorld] Pointer combat movement configured.");
+});
+
+Events.on(WorldLoadEvent, function () {
+    if (!Vars.state.isCampaign() || Vars.state.getPlanet().name !== "ironworld-IronWorld") return;
+
+    for (let i = 0; i < Team.all.length; i++) {
+        const team = Team.all[i];
+        if (team === Team.derelict || !team.isAI()) continue;
+
+        const rules = team.rules();
+        rules.infiniteResources = false;
+        if (typeof rules.fillItems !== "undefined") rules.fillItems = false;
+        rules.buildAi = teamHasCageGuardCore(team);
+    }
 });
 
 function findCoilgun() {

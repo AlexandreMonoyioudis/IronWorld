@@ -62,6 +62,7 @@ orbitRadius: 5
 radius: 0.27
 camRadius: 0.18
 defaultCore: core-cage
+enemyInfiniteItems: false
 generator: {}
 alwaysUnlocked: true
 allowLaunchSchematics: false

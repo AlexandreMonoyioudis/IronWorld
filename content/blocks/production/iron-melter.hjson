@@ -49,7 +49,7 @@ research: {
     parent: wind-collector
     objectives: [
         {
-            type: SectorComplete
+            type: OnSector
             preset: Choke-Hold
         }
     ]

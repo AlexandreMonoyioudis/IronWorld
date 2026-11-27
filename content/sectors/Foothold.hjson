@@ -1,0 +1,17 @@
+planet: IronWorld
+sector: 14
+name: Foothold
+captureWave: 20
+difficulty: 2
+research: {
+    parent: StareDown
+    objectives: [
+        {
+            type: SectorComplete
+            preset: StareDown
+        }
+    ]
+}
+rules: {
+    loadout: []
+}

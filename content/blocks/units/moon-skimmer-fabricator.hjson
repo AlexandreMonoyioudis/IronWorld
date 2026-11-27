@@ -28,11 +28,11 @@ requirements: [
 ]
 
 research: {
-    parent: Vacuum-Induction-Melter
+    parent: core-cage
     objectives: [
         {
-            type: SectorComplete
-            preset: Choke-Hold
+            type: OnSector
+            preset: StareDown
         }
     ]
 }

@@ -1,0 +1,41 @@
+type: PowerTurret
+name: Debug Gun
+description: A free-firing gun with absurd range and explosive shrapnel.
+
+size: 1
+health: 120
+range: 6000
+reload: 1
+shoot: {
+    shots: 1
+}
+
+shootType: {
+    type: BasicBulletType
+    speed: 20
+    damage: 100
+    lifetime: 300
+    width: 14
+    height: 20
+    splashDamage: 120
+    splashDamageRadius: 80
+    hitEffect: blastExplosion
+    despawnEffect: blastExplosion
+    hitSound: explosion
+    fragBullets: 12
+    fragBullet: {
+        type: ShrapnelBulletType
+        length: 180
+        damage: 40
+        width: 20
+    }
+}
+
+requirements: [
+    Iron/1
+]
+
+category: turret
+research: {
+    parent: core-cage
+}

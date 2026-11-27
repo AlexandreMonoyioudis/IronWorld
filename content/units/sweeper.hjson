@@ -2,6 +2,10 @@ type: tank
 name: Sweeper
 description: A moon skimmer armed with an overclocked coilgun.
 
+research: {
+    parent: scourer
+}
+
 tier: 3
 health: 700
 speed: 1.0
