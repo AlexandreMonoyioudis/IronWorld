@@ -1,6 +1,6 @@
 type: ItemTurret
 name: Coilgun
-description: Fires a slow electromagnetic slug at enemies.
+description: Fires a slow electromagnetic slug at enemies. One stage coilgun.
 
 size: 2
 health: 150

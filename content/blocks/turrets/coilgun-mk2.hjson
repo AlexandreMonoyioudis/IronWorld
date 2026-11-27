@@ -1,0 +1,65 @@
+type: ItemTurret
+name: Coilgun-Mk2
+description: Fires a slow electromagnetic slug at enemies. Two stage coilgun.
+
+size: 2
+health: 200
+range: 130
+reload: 25
+ammoPerShot: 2
+maxAmmo: 16
+shootSound: shoot
+shoot: {
+    shots: 1
+}
+
+ammoTypes: {
+    Iron: {
+        type: BasicBulletType
+        speed: 8
+        damage: 45
+        lifetime: 23
+        width: 10
+        height: 14
+        hitSound: explosion
+        hitSoundVolume: 0.2
+        frontColor: b0b0b0
+        backColor: 666666
+        ammoMultiplier: 1
+    }
+    Permendur: {
+        type: BasicBulletType
+        speed: 8
+        damage: 40
+        lifetime: 23
+        width: 12
+        height: 16
+        hitSound: explosion
+        hitSoundVolume: 0.2
+        frontColor: 4c5878
+        backColor: 5b5858
+        ammoMultiplier: 2
+    }
+}
+
+consumes: {
+    power: 10
+}
+
+requirements: [
+    Iron/25
+    Cobalt/20
+    Permendur/40
+    metal-cement/60
+]
+
+category: turret
+research: {
+    parent: core-cage
+}
+researchCost: [
+    Iron/500
+    Cobalt/400
+    Permendur/800
+    metal-cement/1200
+]
