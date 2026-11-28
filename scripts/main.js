@@ -58,6 +58,9 @@ function createCageGuardBuilderAI() {
                     return false;
                 }));
         },
+        useFallback: function () {
+            return false;
+        },
         updateMovement: function () {
             const unit = this.unit;
             const core = unit.closestCore();
