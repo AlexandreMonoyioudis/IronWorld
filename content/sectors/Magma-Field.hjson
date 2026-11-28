@@ -4,11 +4,11 @@ name: Magma Field
 captureWave: 5
 difficulty: 2
 research: {
-    parent: Choke-Hold
+    parent: Strange-Signals
     objectives: [
         {
             type: SectorComplete
-            preset: Choke-Hold
+            preset: Strange-Signals
         }
     ]
 }

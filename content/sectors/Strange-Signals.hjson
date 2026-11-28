@@ -1,0 +1,17 @@
+planet: IronWorld
+sector: 15
+name: Strange Signals
+captureWave: 3
+difficulty: 2
+research: {
+    parent: Choke-Hold
+    objectives: [
+        {
+            type: SectorComplete
+            preset: StareDown
+        }
+    ]
+}
+rules: {
+    loadout: []
+}
