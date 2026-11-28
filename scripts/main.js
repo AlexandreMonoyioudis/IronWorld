@@ -49,6 +49,15 @@ function createCageGuardBuilderAI() {
     let lastPlan = null;
     let cooldown = 0;
     return extend(BuilderAI, {
+        findTarget: function (x, y, range, air, ground) {
+            return Units.closestTarget(this.unit.team, x, y, range,
+                boolf(function (target) {
+                    return target.checkTarget(air, ground);
+                }),
+                boolf(function () {
+                    return false;
+                }));
+        },
         updateMovement: function () {
             const unit = this.unit;
             const core = unit.closestCore();
@@ -60,10 +69,8 @@ function createCageGuardBuilderAI() {
                         return target.within(core.x, core.y, cageGuardPursuitRadius) &&
                             target.checkTarget(bullet.collidesAir, bullet.collidesGround);
                     }),
-                    boolf(function (target) {
-                        return bullet.collidesGround &&
-                            target.within(core.x, core.y, cageGuardPursuitRadius) &&
-                            (unit.type.targetUnderBlocks || !target.block.underBullets);
+                    boolf(function () {
+                        return false;
                     }));
             }
             if (enemy != null) {
